@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>1312094 - Nguyễn Minh Dũng</title>
+	<meta charset='utf-8'/>
+	<link rel="stylesheet" type="text/css" href="css/settings.css">
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div class = "BodySection">
+		<div  class = "Profile-TopCard">
+			<table>
+				<tr>
+					<td rowspan = "6">
+						<image src = "images/profile.jpg" />
+					</td>
+					<td>
+						<span class = "FullName">
+							{{aglFullName}}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class = "Jobs">
+							{{aglJob}}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class = "Address">
+							{{aglAddress}}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class = "Email">
+							{{aglEmail}}as
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class = "BodySection">
+		<div class = "Header" ng-repeat="header in aglHeaders">
+			<div class = "Summary" ng-if="header == 'Summary'">
+				<h1>{{header}}</h1>
+				<p class = "summaryContent"> {{aglSummary}} </p>
+			</div>
+			<div class = "Education" ng-if="header == 'Education'">
+				<h1>{{header}}</h1>
+			</div>
+			<div class = "Experience" ng-if="header == 'Experience'">
+				<h1>{{header}}</h1>
+			</div>
+			<div class = "Skills" ng-if="header == 'Skills'">
+				<h1>{{header}}</h1>
+			</div>
+			<div class = "Languages" ng-if="header == 'Languages'">
+				<h1>{{header}}</h1>
+			</div>
+			<div class = "Projects" ng-if="header == 'Projects'">
+				<h1>{{header}}</h1>
+			</div>
+			<div class = "Interests" ng-if="header == 'Interests'">
+				<h1>{{header}}</h1>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+	
