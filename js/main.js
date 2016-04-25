@@ -15,13 +15,11 @@ angular.module('myApp', []).controller('myCtrl', function($scope){
 	$scope.aglHeaders.push("Skills");	
 	$scope.aglHeaders.push("Interests");
 	
-	$scope.aglSummary = "I'm have been studying about programming for 4 years";
+	$scope.aglSummary = "I'm have been studying about programming for 4 years.";
 	
-	
-	
-	$scope.aglUniversity1 = "University Of Science";
-	$scope.aglPeriod1 = "Sep 2013 - Apr 2016";
-	$scope.aglMajor1 = "Information Techology - Software Engineering";
+	$scope.aglEducation = [];
+	$scope.aglEducation.push({university : "University Of Science", address : "Ho Chi Minh, VietNam",
+	period : "Sep 2013 - Apr 2016", major : "Information Technology - Software Engineering", logo : "images/UOS_Icon.png"});
 
 	$scope.aglInterests = [];
 	$scope.aglInterests.push("Sport: Football, Basketball, Jogging, Cycling");

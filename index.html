@@ -37,7 +37,7 @@
 				<tr>
 					<td>
 						<span class = "Email">
-							{{aglEmail}}as
+							{{aglEmail}}
 						</span>
 					</td>
 				</tr>
@@ -46,28 +46,39 @@
 	</div>
 	
 	<div class = "BodySection">
-		<div class = "Header" ng-repeat="header in aglHeaders">
+		<div class = "HeaderSection" ng-repeat="header in aglHeaders">
 			<div class = "Summary" ng-if="header == 'Summary'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 				<p class = "summaryContent"> {{aglSummary}} </p>
 			</div>
-			<div class = "Education" ng-if="header == 'Education'">
-				<h1>{{header}}</h1>
+			<div ng-if="header == 'Education'">
+				<p class = "Header">{{header}}</p>
+				<div class = "Education" ng-repeat="education in aglEducation">
+					<p class = "University"> {{education.university}}</p>
+					<p class = "UAddress"> {{education.address}}</p>
+					<p class = "Major"> {{education.major}}</p>
+					<p class = "Period"> {{education.period}}</p>
+					<span class = "UniversityLogo">
+						<center>
+							<image class = "Logo" ng-src = "{{education.logo}}"/>
+						</center>
+					</span>
+				</div>
 			</div>
 			<div class = "Experience" ng-if="header == 'Experience'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 			</div>
 			<div class = "Skills" ng-if="header == 'Skills'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 			</div>
 			<div class = "Languages" ng-if="header == 'Languages'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 			</div>
 			<div class = "Projects" ng-if="header == 'Projects'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 			</div>
 			<div class = "Interests" ng-if="header == 'Interests'">
-				<h1>{{header}}</h1>
+				<p class = "Header">{{header}}</p>
 			</div>
 		</div>
 	</div>
