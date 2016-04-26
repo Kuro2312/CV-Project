@@ -16,7 +16,7 @@ angular.module('myApp', []).controller('myCtrl', function($scope){
 	$scope.aglHeaders.push("Skills");	
 	$scope.aglHeaders.push("Interests");
 	
-	$scope.aglSummary = "I'm have been studying about programming for 4 years.";
+	$scope.aglSummary = "I'm have been studying about programming for 4 years. Two years of advanced experience with C#, C++. I very interested in software architectures and software solutions";
 	
 	$scope.aglEducation = [];
 	$scope.aglEducation.push({university : "University Of Science", address : "Ho Chi Minh, VietNam",
@@ -58,11 +58,6 @@ angular.module('myApp', []).controller('myCtrl', function($scope){
 	$scope.aglLanguages.push({name : "English", summary : "Quite Good"});
 	$scope.aglLanguages.push({name : "Japanese", summary : "Quite Good"});
 	$scope.aglLanguages.push({name : "Vietnamese", summary : "Speak fluently"});
-	
-	$scope.aglExperience = [];
-	$scope.aglExperience.push("2 years of advanced experience with C#, C++");
-	$scope.aglExperience.push("Past game projects: Brick, Snake, Mine Sweeper, 2048, Tank, Caro…. programmed by C#, C++");
-	$scope.aglExperience.push("Many projects related to SQL, Layers Architecture, …");
 	
 	$scope.aglProjects = [];
 	$scope.aglProjects.push({name : "Game Tetris, Snake", language : "C++", period : "5/2014 - 6/2014", summary : "For praticing C++"});
