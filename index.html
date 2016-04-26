@@ -41,6 +41,13 @@
 						</span>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<span class = "Email">
+							{{aglNation}}
+						</span>
+					</td>
+				</tr>
 			</table>
 		</div>
 	</div>
@@ -51,6 +58,7 @@
 				<p class = "Header">{{header}}</p>
 				<p class = "summaryContent"> {{aglSummary}} </p>
 			</div>
+			
 			<div ng-if="header == 'Education'">
 				<p class = "Header">{{header}}</p>
 				<div class = "Education" ng-repeat="education in aglEducation">
@@ -65,20 +73,53 @@
 					</span>
 				</div>
 			</div>
+			
 			<div class = "Experience" ng-if="header == 'Experience'">
 				<p class = "Header">{{header}}</p>
 			</div>
-			<div class = "Skills" ng-if="header == 'Skills'">
+			
+			<div  ng-if="header == 'Skills'">
 				<p class = "Header">{{header}}</p>
+				<div class = "ParentBox">
+					<div class = "SkillBox" ng-repeat="skill in aglSkills">
+						<input class = "SkillButton" type="button" value="{{skill}}"/>
+					</div>
+				</div>
 			</div>
-			<div class = "Languages" ng-if="header == 'Languages'">
+			
+			<div ng-if="header == 'Languages'">
 				<p class = "Header">{{header}}</p>
+				<div class = "ParentBox">
+					<div class = "LanguagesBox" ng-repeat="language in aglLanguages">
+						<p class = "LanguageName"> {{language.name}} </p>
+						<p class = "LanguageSummary"> {{language.summary}} </p>
+					</div>
+				</div>
 			</div>
+			
 			<div class = "Projects" ng-if="header == 'Projects'">
 				<p class = "Header">{{header}}</p>
+				<div>
+					<div ng-repeat="project in aglProjects">
+						<div ng-if="$index != 0">
+							<hr/>
+						</div>
+						
+						<p class = "ProjectName"> {{project.name}} </p>
+						<p class = "ProjectSub"> By {{project.language}}, {{project.period}} </p>
+
+						<p class = "ProjectSummary"> {{project.summary}} </p>
+					</div>
+				</div>
 			</div>
-			<div class = "Interests" ng-if="header == 'Interests'">
+			
+			<div ng-if="header == 'Interests'">
 				<p class = "Header">{{header}}</p>
+				<div class = "ParentBox">
+					<div class = "SkillBox" ng-repeat="interest in aglInterests">
+						<input class = "SkillButton" type="button" value="{{interest}}"/>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

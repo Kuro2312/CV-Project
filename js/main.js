@@ -4,6 +4,7 @@ angular.module('myApp', []).controller('myCtrl', function($scope){
 	$scope.aglPhone = "0967 872 636";
 	$scope.aglEmail = "minhdungnguyen1995@gmail.com";
 	$scope.aglAddress = "Ho Chi Minh, VietNam";
+	$scope.aglNation = "Vietnamese";
 	$scope.aglMoreDetailAboutAddress = "Xo Viet Nghe Tinh Street, Ward  21, District Binh Thanh, Ho Chi Minh City";
 	
 	$scope.aglHeaders = [];
@@ -20,34 +21,53 @@ angular.module('myApp', []).controller('myCtrl', function($scope){
 	$scope.aglEducation = [];
 	$scope.aglEducation.push({university : "University Of Science", address : "Ho Chi Minh, VietNam",
 	period : "Sep 2013 - Apr 2016", major : "Information Technology - Software Engineering", logo : "images/UOS_Icon.png"});
-
+	
+	$scope.aglSkills = [];
+	$scope.aglSkills.push("HTML");
+	$scope.aglSkills.push("CSS");
+	$scope.aglSkills.push("JavaScript");
+	$scope.aglSkills.push("Angular");
+	$scope.aglSkills.push("MS SQL");
+	$scope.aglSkills.push("Window Form C#");
+	$scope.aglSkills.push("WPF C#");
+	$scope.aglSkills.push("C");
+	$scope.aglSkills.push("C++");
+	$scope.aglSkills.push(".Net");
+	$scope.aglSkills.push("Java");
+	$scope.aglSkills.push("XML");
+	$scope.aglSkills.push("Software Architecture");
+	$scope.aglSkills.push("Design Patterns");
+	$scope.aglSkills.push("Android Development");
+	$scope.aglSkills.push("Software Development");
+	$scope.aglSkills.push("GitHub");
+	$scope.aglSkills.push("ADO.NET");
+	
 	$scope.aglInterests = [];
-	$scope.aglInterests.push("Sport: Football, Basketball, Jogging, Cycling");
-	$scope.aglInterests.push("Free time: reading book and comic, watching cartoon and listening to English music");
-	$scope.aglInterests.push("Language: Chinese, Japanese");
+	$scope.aglInterests.push("Playing Football");
+	$scope.aglInterests.push("Basketball");
+	$scope.aglInterests.push("Jogging");
+	$scope.aglInterests.push("Cycling");
+	$scope.aglInterests.push("Reading Comic");
+	$scope.aglInterests.push("Reading Book");
+	$scope.aglInterests.push("Watching cartoon")
+	$scope.aglInterests.push("Listening to English and Japanese music");
+	$scope.aglInterests.push("Chinese");
+	$scope.aglInterests.push("Japanese");
 
+	$scope.aglLanguages = [];
+	$scope.aglLanguages.push({name : "English", summary : "Quite Good"});
+	$scope.aglLanguages.push({name : "Japanese", summary : "Quite Good"});
+	$scope.aglLanguages.push({name : "Vietnamese", summary : "Speak fluently"});
+	
 	$scope.aglExperience = [];
 	$scope.aglExperience.push("2 years of advanced experience with C#, C++");
 	$scope.aglExperience.push("Past game projects: Brick, Snake, Mine Sweeper, 2048, Tank, Caro…. programmed by C#, C++");
 	$scope.aglExperience.push("Many projects related to SQL, Layers Architecture, …");
 	
-	$scope.aglSkill = [];
-	$scope.aglSkill.push({name:"Language", details : []});
-	$scope.aglSkill.push({name:"Programming", details : []});
-	$scope.aglSkill.push({name:"Others", details : []});
-	
-	$scope.aglSkill[0].details.push("Good English reading skills");					
-	$scope.aglSkill[0].details.push("Fair English and Japanese communication skills");				
-	$scope.aglSkill[0].details.push("Writing and reading Japanese skills is intermediate");
-	
-	$scope.aglSkill[1].details.push("Good knowledge in design patterns and software architectures such as MVC, Layers, Microkernel... ");					
-	$scope.aglSkill[1].details.push("Good at programming Windows Form and WPF Application");				
-	$scope.aglSkill[1].details.push("Intermediate knowledge in database, SQL, ADO.NET");
-	$scope.aglSkill[1].details.push("Good at analyzing and designing database");
-	$scope.aglSkill[1].details.push("Advanced knowledge about C++, C#, MS SQL, ADO.NET");
-	$scope.aglSkill[1].details.push("Basic knowledge in Java, Android, HTML, CSS, JavaScript, Angular, Socket, Multithread");
-	
-	$scope.aglSkill[2].details.push("Teamwork skill, Planning skill, Information searching skill");					
-	$scope.aglSkill[2].details.push("Focus on working very well");				
-	$scope.aglSkill[2].details.push("Knowledge about GitHub, Excel, Word, Latex");
+	$scope.aglProjects = [];
+	$scope.aglProjects.push({name : "Game Tetris, Snake", language : "C++", period : "5/2014 - 6/2014", summary : "For praticing C++"});
+	$scope.aglProjects.push({name : "Game 2048, Mine Sweeper, Caro", language : "C#", period : "5/2015 - 6/2015", summary : "For praticing C# about Key Input, Thread, Delegate, MVC"});
+	$scope.aglProjects.push({name : "Game Battle City", language : "C#", period : "9/2015 - 12/2015", summary : "Project in Unversity like the classical game Battle City. For praticing Thread, WPF..."});
+	$scope.aglProjects.push({name : "Paint DS", language : "C#", period : "9/2015 - 12/2015", summary : "Software use to draw many shapes like star, rectangle.. and insert picture, text. For praticing Mouse Event, Thread, WPF..."});
 });
+

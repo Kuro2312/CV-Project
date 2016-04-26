@@ -127,3 +127,67 @@ body {
 	width : 40%;
 	height : 60%;
 }
+
+.SkillBox {
+	background-color : gray;
+	margin-left : 5px;
+	margin-right : 5px;
+	margin-top : 5px;
+	margin-bottom : 5px;
+	float : left;
+}
+
+.ParentBox {
+	overflow: hidden;
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+
+.SkillButton {
+	padding-top : 5px;
+	padding-bottom : 5px;
+	padding-left : 10px;
+	padding-right : 10px;
+}
+
+.LanguageName {
+	font-size : 20px;
+	font-weight : bold;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+.LanguageSummary {
+	font-size : 15px;
+	color : gray;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 0px;
+	padding-bottom : 0px;
+}
+
+.LanguagesBox {
+	width: 33%;
+	float : left;
+}
+
+.ProjectName {
+	font-size : 20px;
+	font-weight : bold;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+.ProjectSub {
+	font-size : 15px;
+	color : gray;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 0px;
+	padding-bottom : 0px;
+}
+
