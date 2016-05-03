@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/editSettings.css">
 	<script type="text/javascript" src="js/angular.js"></script>		
 	<script type="text/javascript" src="js/edit.js"></script>
+	<script type="text/javascript" src="js/countries.js"></script>
 </head>
 <body ng-controller="myCtrl">
 	<div class = "Profile">  
@@ -19,12 +20,48 @@
 			<span class = "ImgDescription"> Edit Photo </span> 
 		</div>
 		
-		<div class = "FullName">
-			<input class = "EditTextbox" type="text" value="aglFullName" ng-readonly="checked">
-			<label for="checkbox-input">
+		<div class = "EditZone">
+			<input class = "BigSizeText" type="text" ng-model="aglFullName" ng-readonly="checked">
+			<label for="checkbox-input0">
 				<img src = "images/edit.png"/>
 			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input" type="checkbox" ng-model="checked">
+			<input class = "HiddenCheckbox"  id = "checkbox-input0" type="checkbox" ng-model="checked">
 		</div>
+		
+		<div class = "EditZone">
+			<input class = "SmallSizeText" type="text" ng-model="aglJob" ng-readonly="checked1">
+			<label for="checkbox-input1">
+				<img src = "images/edit.png"/>
+			</label>
+			<input class = "HiddenCheckbox"  id = "checkbox-input1" type="checkbox" ng-model="checked1">
+		</div>
+		
+		<div class = "EditZone">
+			<input class = "SmallSizeText" type="text" ng-model="aglAddress" ng-readonly="checked2">
+			<label for="checkbox-input2">
+				<img src = "images/edit.png"/>
+			</label>
+			<input class = "HiddenCheckbox"  id = "checkbox-input2" type="checkbox" ng-model="checked2">
+		</div>
+		
+		<div class = "EditZone">
+			<input class = "SmallSizeText" type="text" ng-model="aglEmail" ng-readonly="checked3">
+			<label for="checkbox-input3">
+				<img src = "images/edit.png"/>
+			</label>
+			<input class = "HiddenCheckbox"  id = "checkbox-input3" type="checkbox" ng-model="checked3">
+		</div>
+		
+		<div class = "EditZone">
+			<input class = "SmallSizeText" type="text" ng-model="aglNation" ng-readonly="checked4">
+			<label for="checkbox-input4">
+				<img src = "images/edit.png"/>
+			</label>
+			<input class = "HiddenCheckbox"  id = "checkbox-input4" type="checkbox" ng-model="checked4">
+		</div>
+		
+		Select Country (with states):   <select id="country" name ="country"></select>
+		Select State: <select name ="state" id ="state"></select>
+
 	</div>
 </body>	
