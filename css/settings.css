@@ -190,4 +190,30 @@ body {
 	padding-top : 0px;
 	padding-bottom : 0px;
 }
+.Edit {
+	font-size : 15px;
+	color : blue;
+}
+
+.Edit:link {
+    text-decoration: none;
+}
+
+.Edita:visited {
+    text-decoration: none;
+}
+
+.Edit:hover {
+    text-decoration: underline;
+}
+
+.Edit:active {
+    text-decoration: underline;
+}
+
+.thumb{
+    width:150px;
+    height:150px;
+    margin:5px;
+}
 

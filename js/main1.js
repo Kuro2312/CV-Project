@@ -31,4 +31,22 @@ app.controller('myCtrl', function($scope, $http) {
     }, function myError(response) {
       $scope.aglFullName = response.statusText;
   });
+  
+  $scope.myFunc = function () 
+  {
+
+		// Writing it to the server
+		//		
+		var dataObj = {
+
+				FullName : $scope.newSkill
+		};	
+		var res = $http.post('js/data.json', dataObj);
+		res.success(function(data, status, headers, config) {
+			alert( "failure message: " + JSON.stringify({data: data}));
+		});
+		res.error(function(data, status, headers, config) {
+			alert( "failure message: " + JSON.stringify({data: data}));
+		});		
+  }
 });

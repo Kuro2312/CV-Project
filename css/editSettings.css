@@ -1,0 +1,115 @@
+body {
+	background-color: #EEEEEE;
+}
+
+.Profile
+{
+	background-color: White;
+}
+
+.Edit {
+	font-size : 15px;
+	color : blue;
+}
+
+.Edit:link {
+    text-decoration: none;
+}
+
+.Edita:visited {
+    text-decoration: none;
+}
+
+.Edit:hover {
+    text-decoration: underline;
+}
+
+.Edit:active {
+    text-decoration: underline;
+}
+
+.Image-upload
+{
+	position: relative;
+	width: 160px;
+	height:160px;
+}
+
+.Image-upload > input
+{
+    display: none;
+}
+
+.Image-upload img
+{
+    width: 150px;
+	height:150px;
+    margin:5px;
+    cursor: pointer;
+	border : 1px solid gray;
+	background : white;
+}
+
+.ImgDescription {
+	position: absolute;
+	bottom: 0;
+	width: 150px;
+	margin:6px;
+	background: silver;
+	color: #fff;
+	text-align : center;
+	font-size : 25px;
+	visibility: hidden;
+	opacity: 0;
+}
+
+
+.Image-upload:hover .ImgDescription {
+	visibility: visible;
+	opacity: 1;
+}
+
+.FullName 
+ {
+	 position: relative;
+	 display:block;
+	 overflow: hidden;
+ }
+ 
+.FullName img
+ {
+	width: 35px;
+	height:35px;
+    margin:5px;
+	visibility: hidden;
+	opacity: 0;
+	cursor: pointer;
+	float : left;
+}
+
+.FullName input
+{
+	font-size : 26px;
+	background-color: white;
+	margin:5px;
+	float : left;
+}
+
+input[readonly]
+{
+    background-color:#F0F0F0;
+}
+
+.FullName .HiddenCheckbox
+{
+    display: none;
+}
+
+.FullName:hover img
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+
+

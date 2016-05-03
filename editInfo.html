@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>1312094 - Nguyễn Minh Dũng</title>
+	<meta charset='utf-8'/>
+	<link rel="stylesheet" type="text/css" href="css/editSettings.css">
+	<script type="text/javascript" src="js/angular.js"></script>		
+	<script type="text/javascript" src="js/edit.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<div class = "Profile">  
+		<div class="Image-upload">
+			<label for="file-input">
+				<img ng-src="{{aglProfile}}"/>
+			</label>
+
+			<input id="file-input" type="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)"/>
+			
+			<span class = "ImgDescription"> Edit Photo </span> 
+		</div>
+		
+		<div class = "FullName">
+			<input class = "EditTextbox" type="text" value="aglFullName" ng-readonly="checked">
+			<label for="checkbox-input">
+				<img src = "images/edit.png"/>
+			</label>
+			<input class = "HiddenCheckbox"  id = "checkbox-input" type="checkbox" ng-model="checked">
+		</div>
+	</div>
+</body>	

@@ -57,12 +57,19 @@
 	<div class = "BodySection">
 		<div class = "HeaderSection" ng-repeat="header in aglHeaders">
 			<div class = "Summary" ng-if="header == 'Summary'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<p class = "summaryContent"> {{aglSummary}} </p>
+				
 			</div>
 			
 			<div ng-if="header == 'Education'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<div class = "Education" ng-repeat="education in aglEducation">
 					<p class = "University"> {{education.university}}</p>
 					<p class = "UAddress"> {{education.address}}</p>
@@ -77,11 +84,17 @@
 			</div>
 			
 			<div class = "Experience" ng-if="header == 'Experience'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 			</div>
 			
 			<div  ng-if="header == 'Skills'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<div class = "ParentBox">
 					<div class = "SkillBox" ng-repeat="skill in aglSkills">
 						<input class = "SkillButton" type="button" value="{{skill}}"/>
@@ -90,7 +103,10 @@
 			</div>
 			
 			<div ng-if="header == 'Languages'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<div class = "ParentBox">
 					<div class = "LanguagesBox" ng-repeat="language in aglLanguages">
 						<p class = "LanguageName"> {{language.name}} </p>
@@ -100,7 +116,10 @@
 			</div>
 			
 			<div class = "Projects" ng-if="header == 'Projects'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<div>
 					<div ng-repeat="project in aglProjects">
 						<div ng-if="$index != 0">
@@ -116,7 +135,10 @@
 			</div>
 			
 			<div ng-if="header == 'Interests'">
-				<p class = "Header">{{header}}</p>
+				<p class = "Header">
+					{{header}}
+					<a href = "" class = "Edit"> [Edit] </a>
+				</p>
 				<div class = "ParentBox">
 					<div class = "SkillBox" ng-repeat="interest in aglInterests">
 						<input class = "SkillButton" type="button" value="{{interest}}"/>
