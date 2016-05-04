@@ -1,10 +1,10 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
 	
-	 $http({
+	$http({
     method : "GET",
     url : "js/data.json"
-  }).then(function mySucces(response) {
+	}).then(function mySucces(response) {
 		$scope.aglFullName = response.data.FullName;
 
 		$scope.aglJob = response.data.Job;
@@ -32,10 +32,31 @@ app.controller('myCtrl', function($scope, $http) {
 		
     }, function myError(response) {
       $scope.aglFullName = response.statusText;
-  });
-  	
+	});
+  
+	$http({
+    method : "GET",
+    url : "js/data1.json"
+	}).then(function mySucces(response1) {
+		$scope.aglSkillCatalog = response1.data.SkillCatalog;
+		$scope.aglInterestCatalog = response1.data.InterestCatalog;
+	}, function myError(response1) {
+      $scope.aglFullName = response1.statusText;
+	});
+  
+  
+  	$scope.aglFullName = "Kuro";
 	populateCountries("country", "state");
-
+	populateNationalities("nationality");
+	//populateSkill("exampleList");
+	$scope.names=[{'drname':'Dr.Test1'},{'drname':'Dr.Test2'},{'drname':'Dr.Test3'}];
+	
+    $scope.LoadSessionData = function(val) {
+        console.log(val);
+    }
+	
+	
+	
     $scope.imageUpload = function(element){
         var reader = new FileReader();
         reader.onload = $scope.imageIsLoaded;
