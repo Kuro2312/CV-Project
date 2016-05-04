@@ -48,8 +48,6 @@ app.controller('myCtrl', function($scope, $http) {
   	$scope.aglFullName = "Kuro";
 	populateCountries("country", "state");
 	populateNationalities("nationality");
-	//populateSkill("exampleList");
-	$scope.names=[{'drname':'Dr.Test1'},{'drname':'Dr.Test2'},{'drname':'Dr.Test3'}];
 	
     $scope.LoadSessionData = function(val) {
         console.log(val);
@@ -68,4 +66,20 @@ app.controller('myCtrl', function($scope, $http) {
             $scope.aglProfile = e.target.result;
         });
     }
+	
+	$scope.RemoveSkill = function(index){
+		$scope.aglSkills.splice(index, 1); 
+	}
+	
+	$scope.AddSkill = function(){
+		$scope.aglSkills.push($scope.SelectedDoctor);
+	}
+	
+	$scope.RemoveInterest = function(index){
+		$scope.aglInterests.splice(index, 1); 
+	}
+	
+	$scope.AddInterest = function(){
+		$scope.aglInterests.push($scope.SelectedDoctor1);
+	}
 });

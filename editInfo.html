@@ -10,58 +10,98 @@
 </head>
 <body ng-controller="myCtrl">
 	<div class = "Profile">  
-		<div class="Image-upload">
-			<label for="file-input">
-				<img ng-src="{{aglProfile}}"/>
-			</label>
+		<table>
+			<th>
+				<div class="Image-upload">
+					<label class = "As" for="file-input">
+						<img ng-src="{{aglProfile}}"/>
+					</label>
 
-			<input id="file-input" type="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)"/>
+					<input id="file-input" type="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)"/>
+					
+					<span class = "ImgDescription"> Edit Photo </span> 
+				</div>
+			</th>
 			
-			<span class = "ImgDescription"> Edit Photo </span> 
-		</div>
-		
-		<div class = "EditZone">
-			<input class = "BigSizeText" type="text" ng-model="aglFullName" ng-readonly="checked">
-			<label for="checkbox-input0">
-				<img src = "images/edit.png"/>
-			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input0" type="checkbox" ng-model="checked">
-		</div>
-		
-		<div class = "EditZone">
-			<input class = "SmallSizeText" type="text" ng-model="aglJob" ng-readonly="checked1">
-			<label for="checkbox-input1">
-				<img src = "images/edit.png"/>
-			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input1" type="checkbox" ng-model="checked1">
-		</div>
-		
-		<div class = "EditZone">
-			<input class = "SmallSizeText" type="text" ng-model="aglAddress" ng-readonly="checked2">
-			<label for="checkbox-input2">
-				<img src = "images/edit.png"/>
-			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input2" type="checkbox" ng-model="checked2">
-		</div>
-		
-		<div class = "EditZone">
-			<input class = "SmallSizeText" type="text" ng-model="aglEmail" ng-readonly="checked3">
-			<label for="checkbox-input3">
-				<img src = "images/edit.png"/>
-			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input3" type="checkbox" ng-model="checked3">
-		</div>
-		
-		<div class = "EditZone">
-			<input class = "SmallSizeText" type="text" ng-model="aglNation" ng-readonly="checked4">
-			<label for="checkbox-input4">
-				<img src = "images/edit.png"/>
-			</label>
-			<input class = "HiddenCheckbox"  id = "checkbox-input4" type="checkbox" ng-model="checked4">
-		</div>
-		
-		Select Country (with states):   <select id="country" name ="country"></select>
-		Select State: <select name ="state" id ="state"></select>
+			<th>
+				<div class = "EditZone">
+					<input class = "BigSizeText" type="text" ng-model="aglFullName" ng-readonly="checked">
+					<label for="checkbox-input0">
+						<img src = "images/edit.png"/>
+					</label>
+					<input class = "HiddenCheckbox"  id = "checkbox-input0" type="checkbox" ng-model="checked">
+				</div>
 
+				
+				<div class = "EditZone">
+					<input class = "SmallSizeText" type="text" ng-model="aglJob" ng-readonly="checked1">
+					<label for="checkbox-input1">
+						<img src = "images/edit.png"/>
+					</label>
+					<input class = "HiddenCheckbox"  id = "checkbox-input1" type="checkbox" ng-model="checked1">
+				</div>			
+				
+				<div class = "EditZone">
+					<input class = "SmallSizeText" type="text" ng-model="aglEmail" ng-readonly="checked3">
+					<label for="checkbox-input3">
+						<img src = "images/edit.png"/>
+					</label>
+					<input class = "HiddenCheckbox"  id = "checkbox-input3" type="checkbox" ng-model="checked3">
+				</div>
+
+				<div class = "Space">
+					<select class = "comboBoxAddress" id="country" name ="country"></select>
+					<select class = "comboBoxAddress" name ="state" id ="state"></select>
+				</div>
+				
+				<div>
+					<select class = "comboBoxAddress" name ="nationality" id ="nationality"></select>
+				</div>
+			</th>
+		</table>
 	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Skills </p>
+			<input list="testList" type="" ng-model="SelectedDoctor" ng-change="LoadSessionData(SelectedDoctor)" placeholder = "Write your skills..."/>
+			<datalist id="testList">
+				<option ng-repeat="skill in aglSkillCatalog" value="{{skill}}">
+			</datalist>
+			
+			<input type = "button" value = "Add" ng-click ="AddSkill()"/>
+		</div>
+		
+		<div class = "ArrayDecription">
+			<div ng-repeat="skill in aglSkills">
+				<span class = "buttonWithX">
+					{{skill}}
+					<span class="close-btn"><a href="#" ng-click = "RemoveSkill($index)">X</a></span>
+				</span>
+			</div>
+		</div>
+	</div>	
+	
+	<div class = "HeaderSection">
+		<div>		
+			<p class = "Header"> Interests </p>		
+			<input list="testList1" type="" ng-model="SelectedDoctor1" ng-change="LoadSessionData(SelectedDoctor1)" placeholder = "Write your interests..."/>
+			<datalist id="testList1">
+				<option ng-repeat="interest in aglInterestCatalog" value="{{interest}}">
+			</datalist>
+			
+			<input type = "button" value = "Add" ng-click ="AddInterest()"/>
+		</div>
+		
+		<div class = "ArrayDecription">
+			<div ng-repeat="interest in aglInterests">
+				<span class = "buttonWithX">
+					{{interest}}
+					<span class="close-btn"><a href="#" ng-click = "RemoveInterest($index)">X</a></span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+
 </body>	

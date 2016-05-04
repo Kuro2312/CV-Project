@@ -32,7 +32,7 @@ body {
 {
 	position: relative;
 	width: 160px;
-	height:160px;
+	height:180px;
 }
 
 .Image-upload > input
@@ -43,7 +43,7 @@ body {
 .Image-upload img
 {
     width: 150px;
-	height:150px;
+	height: 170px;
     margin:5px;
     cursor: pointer;
 	border : 1px solid gray;
@@ -53,6 +53,7 @@ body {
 .ImgDescription {
 	position: absolute;
 	bottom: 0;
+	left : 0;
 	width: 150px;
 	margin:6px;
 	background: silver;
@@ -92,11 +93,14 @@ body {
 	background-color: white;
 	margin:5px;
 	float : left;
+	border-width:0px;
+	border:none;
+	min-width : 300px;
 }
 
 .SmallSizeText
 {
-	font-size : 18px;
+	font-size : 15px;
 }
 
 .BigSizeText
@@ -120,5 +124,67 @@ input[readonly]
 	opacity: 1;
 }
 
+.close-btn {
+    border: 2px solid #c2c2c2;
+    position: relative;
+    padding: 1px 5px;
+	margin-left : 10px;
+    background-color: #605F61;
+    border-radius: 20px;
+}
+
+.close-btn a {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.buttonWithX
+{ 
+float: left;
+	font-size: 15px;
+	padding: 10px; 
+	border: 2px solid #c2c2c2; 
+	background-color: #E8E8E8; 
+	margin: 5px; 
+	border-radius: 10px; 
+}
+
+.ArrayDecription
+{
+	overflow: hidden;
+	margin-top : 15px;
+}
+
+.comboBoxAddress
+{
+	margin-bottom : 10px;
+	float : left;
+	width : 50%;
+}
+
+.HeaderSection
+{
+	background-color: White;
+	width : 70%;
+	font-size : 15px;
+	box-shadow: 2px 2px 5px black;
+	margin-top : 15px;
+	margin-bottom : 15px;
+	padding-left : 30px;
+	padding-right : 30px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+.Header {
+	font-size : 20px;
+	font-weight : bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
 
 
