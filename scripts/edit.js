@@ -10,8 +10,9 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglJob = response.data.Job;
 		$scope.aglPhone = response.data.Phone;
 		$scope.aglEmail = response.data.Email;
-		$scope.aglAddress = response.data.Address;
-		$scope.aglNation = response.data.Nation;
+		$scope.aglAddressNation = response.data.AddressNation;
+		$scope.aglAddressState = response.data.AddressState;
+		$scope.aglNationality = response.data.Nationality;
 		$scope.aglMoreDetailAboutAddress = response.data.MoreDetailAboutAddress;
 		$scope.aglProfile = "images/profile1.png";
 		$scope.aglProfile = response.data.ProfileImage;
@@ -36,23 +37,41 @@ app.controller('myCtrl', function($scope, $http) {
   
 	$http({
     method : "GET",
-    url : "data/data1.json"
+    url : "data/publicData.json"
 	}).then(function mySucces(response1) {
 		$scope.aglSkillCatalog = response1.data.SkillCatalog;
 		$scope.aglInterestCatalog = response1.data.InterestCatalog;
 	}, function myError(response1) {
-      $scope.aglFullName = response1.statusText;
+		$scope.aglFullName = response1.statusText;
 	});
   
-  
+	$http({
+    method : "GET",
+    url : "data/WorldData.json"
+	}).then(function mySucces(response2) {
+		$scope.aglCountries = response2.data.Countries;
+		$scope.aglStates = response2.data.States;
+		$scope.aglNationalities = response2.data.Nationalities;
+		
+		var ind = $scope.aglCountries.indexOf( $scope.aglAddressNation );
+		$scope.aglSelectedStates = $scope.aglStates[ind].split("|");
+	}, function myError(response2) {
+		$scope.aglFullName = response2.statusText;
+	});
 
-	populateCountries("country", "state");
-	populateNationalities("nationality");
-
+	$scope.UpdateState = function() {
+		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedCountry );
+		$scope.aglSelectedStates = $scope.aglStates[ind].split("|");
+		//$scope.aglFullName  = selectedIndex;
+	}
+	
     $scope.LoadSessionData = function(val) {
         console.log(val);
     }
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	
+	bkLib.onDomLoaded(function() { 
+		nicEditors.allTextAreas() 
+	});
 	
 	
     $scope.imageUpload = function(element){

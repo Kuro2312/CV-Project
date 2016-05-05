@@ -9,8 +9,9 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglJob = response.data.Job;
 		$scope.aglPhone = response.data.Phone;
 		$scope.aglEmail = response.data.Email;
-		$scope.aglAddress = response.data.Address;
-		$scope.aglNation = response.data.Nation;
+		$scope.aglAddressNation = response.data.AddressNation;
+		$scope.aglAddressState = response.data.AddressState;
+		$scope.aglNationality = response.data.Nationality;
 		$scope.aglMoreDetailAboutAddress = response.data.MoreDetailAboutAddress;
 		$scope.aglProfileImage = response.data.ProfileImage;
 		
