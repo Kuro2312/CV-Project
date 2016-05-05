@@ -3,7 +3,7 @@ app.controller('myCtrl', function($scope, $http) {
 	
 	$http({
     method : "GET",
-    url : "js/data.json"
+    url : "data/data.json"
 	}).then(function mySucces(response) {
 		$scope.aglFullName = response.data.FullName;
 
@@ -36,7 +36,7 @@ app.controller('myCtrl', function($scope, $http) {
   
 	$http({
     method : "GET",
-    url : "js/data1.json"
+    url : "data/data1.json"
 	}).then(function mySucces(response1) {
 		$scope.aglSkillCatalog = response1.data.SkillCatalog;
 		$scope.aglInterestCatalog = response1.data.InterestCatalog;
@@ -45,14 +45,14 @@ app.controller('myCtrl', function($scope, $http) {
 	});
   
   
-  	$scope.aglFullName = "Kuro";
+
 	populateCountries("country", "state");
 	populateNationalities("nationality");
-	
+
     $scope.LoadSessionData = function(val) {
         console.log(val);
     }
-	
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	
 	
     $scope.imageUpload = function(element){

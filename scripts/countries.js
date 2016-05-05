@@ -347,17 +347,5 @@ function populateNationalities(nationalityElementId){
 	}
 }
 
-/*var skill_arr =new  Array("C++", "C", "C#", "Java");
-//nationality_arr
-function populateSkill(skillElementId){
-	// given the id of the <select> tag as function argument, it inserts <option> tags
-	var skillElement = document.getElementById(skillElementId);
-	skillElement.length=0;
-	skillElement.options[0] = new Option('Select Nationality','-1');
-	skillElement.selectedIndex = 0;
-	
-	for (var i = 0; i < skill_arr.length; i++) 
-	{
-		skillElement.options[skillElement.length] = new Option(skill_arr.[i], skill_arr.[i]);
-	}
-}*/
+var area = new nicEditor({fullPanel : true}).panelInstance("area1");
+

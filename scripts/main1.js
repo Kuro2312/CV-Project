@@ -2,7 +2,7 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
   $http({
     method : "GET",
-    url : "js/data.json"
+    url : "data/data.json"
   }).then(function mySucces(response) {
 		$scope.aglFullName = response.data.FullName;
 
@@ -41,7 +41,7 @@ app.controller('myCtrl', function($scope, $http) {
 
 				FullName : $scope.newSkill
 		};	
-		var res = $http.post('js/data.json', dataObj);
+		var res = $http.post('data/data.json', dataObj);
 		res.success(function(data, status, headers, config) {
 			alert( "failure message: " + JSON.stringify({data: data}));
 		});

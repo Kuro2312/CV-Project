@@ -4,9 +4,10 @@
 	<title>1312094 - Nguyễn Minh Dũng</title>
 	<meta charset='utf-8'/>
 	<link rel="stylesheet" type="text/css" href="css/editSettings.css">
-	<script type="text/javascript" src="js/angular.js"></script>		
-	<script type="text/javascript" src="js/edit.js"></script>
-	<script type="text/javascript" src="js/countries.js"></script>
+	<script type="text/javascript" src="scripts/angular.js"></script>		
+	<script type="text/javascript" src="scripts/countries.js"></script>
+	<script type="text/javascript" src="scripts/nicEdit.js"></script>
+	<script type="text/javascript" src="scripts/edit.js"></script>
 </head>
 <body ng-controller="myCtrl">
 	<div class = "Profile">  
@@ -50,7 +51,7 @@
 				</div>
 
 				<div class = "Space">
-					<select class = "comboBoxAddress" id="country" name ="country"></select>
+					<select class = "comboBoxAddress" id="country" name ="country" ng-model = "aglCountry"></select>
 					<select class = "comboBoxAddress" name ="state" id ="state"></select>
 				</div>
 				
@@ -59,6 +60,39 @@
 				</div>
 			</th>
 		</table>
+	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Summary </p>
+			<div class = "Summary">
+				<textarea id="area1" class = "TextSummary" ng-model = "aglSummary"></textarea> 
+			</div>
+		</div>
+	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Education </p>
+		</div>
+	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Experience </p>
+		</div>
+	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Projects </p>
+		</div>
+	</div>
+	
+	<div class = "HeaderSection">
+		<div>
+			<p class = "Header"> Languages </p>
+		</div>
 	</div>
 	
 	<div class = "HeaderSection">
@@ -102,6 +136,5 @@
 			</div>
 		</div>
 	</div>
-
 
 </body>	
