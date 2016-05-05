@@ -92,24 +92,206 @@
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Education </p>
-		</div>
+			
+			<p> School name </p>
+			<input type = "text" />
+			
+			<p> Major </p>
+			<input type = "text" />
+
+			<p> Period </p> 
+			<div>
+				<div> </div>
+				<select class = "" ng-model="aglStartMonth">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="month in aglMonthList"
+							value="{{month}}">
+							{{month}}
+					</option>
+				</select>
+				
+				<select class = "" ng-model="aglStartYear">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="year in aglYearList"
+							value="{{year}}">
+							{{year}}
+					</option>
+				</select>
+				 - 
+				<select class = "" ng-model="aglEndMonth">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="month in aglMonthList"
+							value="{{month}}">
+							{{month}}
+					</option>
+				</select>
+				
+				<select class = "" ng-model="aglEndYear">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="year in aglYearList"
+							value="{{year}}">
+							{{year}}
+					</option>
+				</select>
+			</div>
+			
+			<p> Place </p>
+			<div class = "">
+					<select class = "" id="Country" name ="Country" ng-model = "aglSelectedCountry" ng-change="UpdateState()">
+						<option ng-selected="{{country == aglAddressNation}}"
+								ng-repeat="country in aglCountries"
+								value="{{country}}">
+								{{country}}
+						</option>					
+					</select>
+					
+					<select class = "" name ="State" id ="State" ng-model = "aglAddressState">
+						<option ng-selected="{{state == aglAddressState}}"
+								ng-repeat="state in aglSelectedStates"
+								value="{{state}}">
+								{{state}}
+						</option>	
+					</select>
+			</div>
+		</div>	
 	</div>
 	
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Experience </p>
+			
+			<p> Company name </p>
+			<input type = "text" />
+			
+			<p> Title </p>
+			<input type = "text" />
+			
+			<p> Place </p>
+			<input type = "text" />
+			
+			<div>
+			<p> Period </p>
+			<select class = "" ng-model="aglStartMonth">
+				<option ng-selected="{{$index == -1}}"
+						ng-repeat="month in aglMonthList"
+						value="{{month}}">
+						{{month}}
+				</option>
+			</select>
+			
+			<select class = "" ng-model="aglStartYear">
+				<option ng-selected="{{$index == -1}}"
+						ng-repeat="year in aglYearList"
+						value="{{year}}">
+						{{year}}
+				</option>
+			</select>
+			 - 
+			<select class = "" ng-model="aglEndMonth">
+				<option ng-selected="{{$index == -1}}"
+						ng-repeat="month in aglMonthList"
+						value="{{month}}">
+						{{month}}
+				</option>
+			</select>
+			
+			<select class = "" ng-model="aglEndYear">
+				<option ng-selected="{{$index == -1}}"
+						ng-repeat="year in aglYearList"
+						value="{{year}}">
+						{{year}}
+				</option>
+			</select>
+			</div>
+			
+			<p> Description </p>
+			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
+				
+			</textarea> 
 		</div>
 	</div>
 	
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Projects </p>
+			
+			<p> Project name </p>
+			<input type = "text" />
+			
+			<p> By programming language </p>
+			<select class = "" ng-model="aglStartMonth">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="month in aglMonthList"
+							value="{{month}}">
+							{{month}}
+					</option>
+				</select>
+				
+				
+			<p> Period </p> 
+			<div>
+				<select class = "" ng-model="aglStartMonth">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="month in aglMonthList"
+							value="{{month}}">
+							{{month}}
+					</option>
+				</select>
+				
+				<select class = "" ng-model="aglStartYear">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="year in aglYearList"
+							value="{{year}}">
+							{{year}}
+					</option>
+				</select>
+				 - 
+				<select class = "" ng-model="aglEndMonth">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="month in aglMonthList"
+							value="{{month}}">
+							{{month}}
+					</option>
+				</select>
+				
+				<select class = "" ng-model="aglEndYear">
+					<option ng-selected="{{$index == -1}}"
+							ng-repeat="year in aglYearList"
+							value="{{year}}">
+							{{year}}
+					</option>
+				</select>
+			</div>
+			
+			<p> Description </p>
+			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
+				
+			</textarea> 
 		</div>
 	</div>
 	
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Languages </p>
+			<select class = "comboBoxAddress" name ="Lang" id ="Lang" ng-model="aglLanguage">
+				<option ng-selected="{{$index == 0}}"
+						ng-repeat="lang in aglLanguageList"
+						value="{{lang.code}}">
+						{{lang.language}}
+				</option>
+			</select>
+						
+			<div>
+				<textarea id="area2" class = "TextSummary" ng-model = "aglDescibe" placeholder="Describe yourlanguage here...">
+				
+				</textarea> 
+			</div>
+			
+			<div>
+				<input type = "button" value = "Add" ng-click ="AddLanguage()"/>
+			</div>
+			
+
 		</div>
 	</div>
 	

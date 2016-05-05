@@ -59,10 +59,21 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglFullName = response2.statusText;
 	});
 
+	$http({
+    method : "GET",
+    url : "data/LanguageData.json"
+	}).then(function mySucces(response3) {
+		$scope.aglLanguageList = response3.data;
+	}, function myError(response3) {
+		$scope.aglFullName = response3.statusText;
+	});
+	
+	$scope.aglMonthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octoper", "November", "December"];
+	$scope.aglYearList = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
+	
 	$scope.UpdateState = function() {
 		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedCountry );
 		$scope.aglSelectedStates = $scope.aglStates[ind].split("|");
-		//$scope.aglFullName  = selectedIndex;
 	}
 	
     $scope.LoadSessionData = function(val) {
@@ -70,7 +81,8 @@ app.controller('myCtrl', function($scope, $http) {
     }
 	
 	bkLib.onDomLoaded(function() { 
-		nicEditors.allTextAreas() 
+		//nicEditors.allTextAreas()
+		new nicEditor({fullPanel : true}).panelInstance('area1');	
 	});
 	
 	

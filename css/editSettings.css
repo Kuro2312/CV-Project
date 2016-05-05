@@ -197,7 +197,22 @@ float: left;
 .TextSummary
 {
 	width : 100%;
+	margin-right : 10px;
 	height : 10em;
 	resize :none;
+}
+
+.comboBoxDate
+{
+	margin-bottom : 10px;
+	float : left;
+	width : 25%;
+}
+
+.comboBoxAddressSchool
+{
+	margin-bottom : 10px;
+	float : left;
+	width : 30%;
 }
 
