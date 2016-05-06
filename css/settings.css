@@ -217,3 +217,21 @@ body {
     margin:5px;
 }
 
+.Company{
+	font-size : 20px;
+	font-weight : bold;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 15px;
+	padding-bottom : 15px;
+}
+
+.CompTitle {
+	font-size : 18px;
+	color : CornFlowerBlue;
+	margin-top : 0px;
+	margin-bottom : 0px;
+	padding-top : 5px;
+	padding-bottom : 5px;
+	font-weight : bold;
+}

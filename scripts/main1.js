@@ -19,6 +19,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.aglSummary = response.data.Summary;
 
+		$scope.aglExperience = response.data.Experience;
+		
 		$scope.aglEducation = response.data.Education;
 
 		$scope.aglSkills = response.data.Skills;

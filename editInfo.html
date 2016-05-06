@@ -204,27 +204,37 @@
 		<div class = "HeaderBody">
 			<p class = "Header"> Experience </p>
 			
+			<div class = "Education" ng-repeat="exp in aglExperience">
+					<div ng-if="$index != 0">
+						<hr/>
+					</div>
+					<img class = "editbtn_v1" src = "images/edit.png" ng-click = "EditExperience($index)"/>	
+					<img class = "editbtn_v1" src = "images/close.png" ng-click = "RemoveExperience($index)"/>
+					<p class = "Company"> {{exp.company}}</p>
+					<p class = "CompTitle"> {{exp.title}}</p>
+					<p class = "Period"> {{exp.period}}</p>
+					<p class = "CompSummary"> {{exp.summary}} </p>
+
+			</div>
+			
 			<div ng-show="showDetails2" class = "AddSchool">
 			<p> Company name </p>
-			<input type = "text" class = "LongInput"/>
+			<input type = "text" class = "LongInput" ng-model = "aglCompanyName" ng-readonly = "aglExpNameChecked"/>
 			
 			<p> Title </p>
-			<input type = "text" class = "LongInput"/>
-			
-			<p> Place </p>
-			<input type = "text" class = "LongInput"/>
+			<input type = "text" class = "LongInput" ng-model = "aglTitle"/>
 			
 			<div>
 			<p> Period </p>
-			<select class = "" ng-model="aglStartMonth">
+			<select class = "" ng-model="aglExpStartMonth">
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="month in aglMonthList"
-						value="{{month}}">
+						value="{{month.name}}">
 						{{month.name}}
 				</option>
 			</select>
 			
-			<select class = "" ng-model="aglStartYear">
+			<select class = "" ng-model="aglExpStartYear">
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="year in aglYearList"
 						value="{{year}}">
@@ -232,15 +242,15 @@
 				</option>
 			</select>
 			 - 
-			<select class = "" ng-model="aglEndMonth">
+			<select class = "" ng-model="aglExpEndMonth">
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="month in aglMonthList"
-						value="{{month}}">
+						value="{{month.name}}">
 						{{month.name}}
 				</option>
 			</select>
 			
-			<select class = "" ng-model="aglEndYear">
+			<select class = "" ng-model="aglExpEndYear">
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="year in aglYearList"
 						value="{{year}}">
@@ -250,7 +260,7 @@
 			</div>
 			
 			<p> Description </p>
-			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
+			<textarea id="area3" class = "TextSummary" ng-model = "aglExperienceDecription">
 				
 			</textarea>
 			

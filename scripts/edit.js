@@ -25,6 +25,8 @@ app.controller('myCtrl', function($scope, $http) {
 
 		$scope.aglSkills = response.data.Skills;
 
+		$scope.aglExperience = response.data.Experience;
+		
 		$scope.aglInterests = response.data.Interests;
 
 		$scope.aglLanguages = response.data.Languages;
@@ -223,21 +225,6 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglProEndMonth = eTime[0];
 		$scope.aglProStartYear = sTime[1];
 		$scope.aglProEndYear = eTime[1];
-	}
-	
-	$scope.RemoveExperience = function(index){
-		$scope.aglExperience .splice(index, 1); 
-		$scope.SelectedExpIndex = -1;
-		$scope.flag5 = ! $scope.flag5;
-	}
-	
-	$scope.EditExperience  = function(index){
-		//$scope.aglLanguage = $scope.aglLanguages[index].name;
-		//$scope.aglLevel = $scope.aglLanguages[index].summary;
-		$scope.showDetails2 = !$scope.showDetails2;
-		$scope.flag5 = true;
-		$scope.SelectedExpIndex = index;	
-		
 	}
 	
 	$scope.UpdateProject = function(){
@@ -496,4 +483,145 @@ app.controller('myCtrl', function($scope, $http) {
 		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedEduCountry );
 		$scope.aglSelectedEduStates = $scope.aglStates[ind].split("|");
 	}
+	
+	
+	$scope.ResetExperienceData = function()
+	{
+		$scope.aglCompanyName = null;
+		$scope.aglTitle = null;
+		$scope.aglExpStartMonth = null;
+		$scope.aglExpStartYear = null;
+		$scope.aglExpEndMonth = null;
+		$scope.aglExpEndYear = null;
+		$scope.aglExperienceDecription = null;
+	}
+	
+	$scope.RemoveExperience = function(index){
+		$scope.aglExperience .splice(index, 1); 
+		$scope.SelectedExpIndex = -1;
+		$scope.flag5 = ! $scope.flag5;
+		
+		$scope.aglExpNameChecked = false;
+		$scope.ResetExperienceData();
+		$scope.aglExperienceError = "";
+	}
+	
+	$scope.EditExperience  = function(index){
+
+		$scope.aglExpNameChecked = true;
+		$scope.showDetails2 = true;
+		$scope.flag5 = true;
+		$scope.SelectedExpIndex = index;		
+		
+		$scope.aglCompanyName = $scope.aglExperience[index].company;
+		$scope.aglTitle = $scope.aglExperience[index].title;
+		$scope.aglExperienceDecription = $scope.aglExperience[index].summary;
+		
+		var time = $scope.aglExperience[index].period.split(" - ");
+		var sTime = time[0].split(" ");
+		var eTime = time[1].split(" ");
+		
+		$scope.aglExpStartMonth = sTime[0];
+		$scope.aglExpEndMonth = eTime[0];
+		$scope.aglExpStartYear = sTime[1];
+		$scope.aglExpEndYear = eTime[1];
+	}
+	
+	$scope.UpdateExperience = function(){
+		
+		$scope.CheckExpData();
+		if ($scope.aglExperienceError != "")
+			return;
+
+		var per = $scope.aglExpStartMonth + " " + $scope.aglExpStartYear + " - ";
+		per = per + $scope.aglExpEndMonth + " " + $scope.aglExpEndYear;
+		
+		var ind = $scope.SelectedExpIndex;
+		
+		$scope.aglExperience[ind].title = $scope.aglTitle;
+		$scope.aglExperience[ind].period = per;
+		$scope.aglExperience[ind].summary = $scope.aglExperienceDecription;
+		
+		$scope.flag5 = ! $scope.flag5;
+		$scope.aglExpNameChecked = false;
+		
+		$scope.ResetExperienceData();
+		$scope.aglExperienceError = "";
+	}
+	
+	$scope.AddExperience = function(){
+		
+		$scope.CheckExpData();
+		if ($scope.aglExperienceError != "")
+			return;
+		
+		var per = $scope.aglExpStartMonth + " " + $scope.aglExpStartYear + " - ";
+		per = per + $scope.aglExpEndMonth + " " + $scope.aglExpEndYear;
+
+		var newExp = 
+		{
+			company : $scope.aglCompanyName,
+			title : $scope.aglTitle,
+			period : per,
+			summary : $scope.aglExperienceDecription
+		}
+		
+		$scope.aglExperience.push (newExp);
+		
+		$scope.ResetExperienceData();
+		$scope.aglExperienceError = "";
+	}
+	
+	$scope.CheckExpData = function()
+	{
+		$scope.aglExperienceError = "";
+		if ($scope.aglCompanyName == null)
+		{
+			$scope.aglExperienceError = "Error: Empty Name!";
+			return;
+		}
+
+		if ($scope.aglTitle == null)
+		{
+			$scope.aglExperienceError = "Error: Empty Title!";
+			return;
+		}	
+		
+		if ($scope.aglExpStartYear == null || $scope.aglExpStartMonth == null || $scope.aglExpEndYear == null || $scope.aglExpEndMonth == null)
+		{
+			$scope.aglExperienceError = "Error: Invalid Period!";
+			return;
+		}
+
+		if ($scope.aglExpStartYear > $scope.aglExpEndYear)
+		{
+			$scope.aglExperienceError = "Error: Invalid Period!";
+			return;
+		}	
+		
+		var n = $scope.aglMonthList.length;
+		var ind1 = -1;
+		var ind2 = -1;
+		
+		for (var i = 0; i < n; i++)
+		{
+			if ($scope.aglExpStartMonth == $scope.aglMonthList[i].name)
+				ind1 = i;
+			if ($scope.aglExpEndMonth == $scope.aglMonthList[i].name)
+				ind2 = i;
+		}
+		
+		if ($scope.aglExpStartYear == $scope.aglExpEndYear && ind1 > ind2)
+		{
+			$scope.aglExperienceError = "Error: Invalid Period!";
+			return;
+		}
+		
+		if ($scope.aglExperienceDecription == null)
+		{
+			$scope.aglExperienceError = "Error: Empty Decription!";
+			return;
+		}
+	}
+	
 });

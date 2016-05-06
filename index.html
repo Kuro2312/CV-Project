@@ -88,6 +88,16 @@
 					{{header}}
 					<a href = "" class = "Edit"> [Edit] </a>
 				</p>
+				
+				<div class = "Education" ng-repeat="exp in aglExperience">
+					<div ng-if="$index != 0">
+						<hr/>
+					</div>
+					<p class = "Company"> {{exp.company}}</p>
+					<p class = "CompTitle"> {{exp.title}}</p>
+					<p class = "Period"> {{exp.period}}</p>
+					<p class = "CompSummary"> {{exp.summary}} </p>
+				</div>
 			</div>
 			
 			<div  ng-if="header == 'Skills'">
