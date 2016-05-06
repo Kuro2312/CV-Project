@@ -68,9 +68,26 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglFullName = response3.statusText;
 	});
 	
-	$scope.aglMonthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octoper", "November", "December"];
+	$scope.aglMonthList = 
+	[
+		{name : "Jan", id : 1},
+		{name : "Feb", id : 2},
+		{name : "Mar", id : 3},
+		{name : "Apr", id : 4},
+		{name : "May", id : 5},
+		{name : "Jun", id : 6},
+		{name : "Jul", id : 7},
+		{name : "Aug", id : 8},
+		{name : "Sep", id : 9},
+		{name : "Oct", id : 10},
+		{name : "Nov", id : 11},
+		{name : "Dec", id : 12}
+	];
+		
 	$scope.aglYearList = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
 	$scope.aglLevelList = ["Native", "Professional", "Fluent", "Communicable", "Quite Good"];
+	$scope.aglProgrammingLanguages = ["C", "C++", "C#", "Java", "Object C", "PHP", "Assemly"];
+	
 	$scope.UpdateState = function() {
 		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedCountry );
 		$scope.aglSelectedStates = $scope.aglStates[ind].split("|");
@@ -164,6 +181,7 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.flag1 = ! $scope.flag1;
 		$scope.SelectedLangIndex = index;
 		$scope.aglIsUpdating = true;
+		$scope.flag2 = true;
 	}
 	
 	$scope.UpdateLanguage = function(){
@@ -175,5 +193,168 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.aglIsUpdating = false;
 		$scope.flag1 = ! $scope.flag1;
+	}
+	
+	$scope.RemoveProject = function(index){
+		$scope.aglProjects.splice(index, 1); 
+		$scope.SelectedProIndex = -1;
+		$scope.flag4 = ! $scope.flag4;
+		$scope.aglProNameChecked = false;
+		$scope.ResetProjectData();
+		$scope.aglProjectError = "";
+	}
+	
+	$scope.EditProject = function(index){
+		//$scope.aglLanguage = $scope.aglLanguages[index].name;
+		//$scope.aglLevel = $scope.aglLanguages[index].summary;
+		$scope.aglProNameChecked = true;
+		$scope.showDetails3 = true;
+		$scope.flag4 = true;
+		$scope.SelectedProIndex = index;	
+		
+		$scope.aglProName = $scope.aglProjects[index].name;
+		$scope.aglProLang = $scope.aglProjects[index].language;
+		$scope.aglProSummary = $scope.aglProjects[index].summary;
+		
+		var time = $scope.aglProjects[index].period.split(" - ");
+		var sTime = time[0].split(" ");
+		var eTime = time[1].split(" ");
+		
+		$scope.aglProStartMonth = sTime[0];
+		$scope.aglProEndMonth = eTime[0];
+		$scope.aglProStartYear = sTime[1];
+		$scope.aglProEndYear = eTime[1];
+	}
+	
+	$scope.RemoveEducation = function(index){
+		$scope.aglEducation.splice(index, 1); 
+		$scope.SelectedEduIndex = -1;
+		$scope.flag6 = ! $scope.flag6;
+	}
+	
+	$scope.EditEducation = function(index){
+		//$scope.aglLanguage = $scope.aglLanguages[index].name;
+		//$scope.aglLevel = $scope.aglLanguages[index].summary;
+		$scope.showDetails1 = !$scope.showDetails1;
+		$scope.flag6 = true;
+		$scope.SelectedEduIndex = index;	
+	}
+	
+	$scope.RemoveExperience = function(index){
+		$scope.aglExperience .splice(index, 1); 
+		$scope.SelectedExpIndex = -1;
+		$scope.flag5 = ! $scope.flag5;
+	}
+	
+	$scope.EditExperience  = function(index){
+		//$scope.aglLanguage = $scope.aglLanguages[index].name;
+		//$scope.aglLevel = $scope.aglLanguages[index].summary;
+		$scope.showDetails2 = !$scope.showDetails2;
+		$scope.flag5 = true;
+		$scope.SelectedExpIndex = index;	
+		
+	}
+	
+	$scope.UpdateProject = function(){
+		
+		$scope.SelectedProIndex
+		$scope.CheckProjectData();
+		if ($scope.aglProjectError != "")
+			return;
+		
+		var per = $scope.aglProStartMonth + " " + $scope.aglProStartYear + " - ";
+		per = per + $scope.aglProEndMonth + " " + $scope.aglProEndYear;
+		
+		var ind = $scope.SelectedProIndex;
+		
+		$scope.aglProjects[ind].language = $scope.aglProLang;
+		$scope.aglProjects[ind].period = per;
+		$scope.aglProjects[ind].summary = $scope.aglProSummary;
+		
+		
+		$scope.flag4 = ! $scope.flag4;
+		$scope.aglProNameChecked = false;
+		$scope.ResetProjectData();
+		$scope.aglProjectError = "";
+	}
+	
+	$scope.AddProject = function(){
+		
+		$scope.CheckProjectData();
+		if ($scope.aglProjectError != "")
+			return;
+		
+
+		var per = $scope.aglProStartMonth + " " + $scope.aglProStartYear + " - ";
+		per = per + $scope.aglProEndMonth + " " + $scope.aglProEndYear;
+		var newPro = 
+		{
+			name : $scope.aglProName,
+			language : $scope.aglProLang,
+			period : per,
+			summary : $scope.aglProSummary
+		}
+		
+		$scope.aglProjects.push (newPro);
+		
+		$scope.ResetProjectData();
+		$scope.aglProjectError = "";
+	}
+	
+	$scope.ResetProjectData = function()
+	{
+		$scope.aglProName = null;
+		$scope.aglProLang = null;
+		$scope.aglProSummary = null;
+		$scope.aglProStartMonth = null;
+		$scope.aglProEndMonth = null;
+		$scope.aglProStartYear = null;
+		$scope.aglProEndYear = null;
+	}
+	
+	$scope.CheckProjectData = function()
+	{
+		$scope.aglProjectError = "";
+		if ($scope.aglProName == null)
+		{
+			$scope.aglProjectError = "Error: Empty Name!";
+			return;
+		}
+
+		if ($scope.aglProStartYear == null || $scope.aglProStartMonth == null || $scope.aglProEndYear == null || $scope.aglProEndMonth == null)
+		{
+			$scope.aglProjectError = "Error: Invalid Period!";
+			return;
+		}
+
+		if ($scope.aglProStartYear > $scope.aglProEndYear)
+		{
+			$scope.aglProjectError = "Error: Invalid Period!";
+			return;
+		}	
+		
+		var n = $scope.aglMonthList.length;
+		var ind1 = -1;
+		var ind2 = -1;
+		
+		for (var i = 0; i < n; i++)
+		{
+			if ($scope.aglProStartMonth == $scope.aglMonthList[i].name)
+				ind1 = i;
+			if ($scope.aglProEndMonth == $scope.aglMonthList[i].name)
+				ind2 = i;
+		}
+		
+		if ($scope.aglProStartYear == $scope.aglProEndYear && ind1 > ind2)
+		{
+			$scope.aglProjectError = "Error: Invalid Period!";
+			return;
+		}
+		
+		if ($scope.aglProSummary == null)
+		{
+			$scope.aglProjectError = "Error: Empty Decription!";
+			return;
+		}
 	}
 });

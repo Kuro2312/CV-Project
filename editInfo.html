@@ -81,8 +81,9 @@
 		</table>
 	</div>
 	
-	<div class = "HeaderSection">
-		<div>
+	<div class = "BodySection">
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 			<p class = "Header"> Summary </p>
 			<p ng-show="!showDetails"> {{aglSummary}} </p>
 			
@@ -90,24 +91,30 @@
 				<textarea id="area1" class = "TextSummary" ng-model = "aglSummary"></textarea> 
 			</div>
 			
-			<h4><a href="#" ng-click="showDetails = ! showDetails">
-				<span ng-show="!showDetails"> Edit </span>
-				<span ng-show="showDetails"> Record </span>
-				</a>
-			</h4>
+			
 		</div>
+		
+		<button class = "UpdateBar" ng-click="showDetails = ! showDetails">
+		<span ng-show="!showDetails"> Update Summary </span>
+		<span ng-show="showDetails"> Record </span>
+		</button>
 	</div>
 	
-	<div class = "HeaderSection">
-		<div>
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 			<p class = "Header"> Education </p>
 			
 			<div class = "Education" ng-repeat="education in aglEducation">
+					<div ng-if="$index != 0">
+						<hr/>
+					</div>
+					<img class = "editbtn_v1" src = "images/edit.png" ng-click = "EditEducation($index)"/>	
+					<img class = "editbtn_v1" src = "images/close.png" ng-click = "RemoveEducation($index)"/>
 					<p class = "University"> {{education.university}}</p>
 					<p class = "UAddress"> {{education.address}}</p>
 					<p class = "Major"> {{education.major}}</p>
 					<p class = "Period"> {{education.period}}</p>
-					<span class = "UniversityLogo">
+					<span class = "UniversityLogo" ng-show = "false">
 						<center>
 							<image class = "Logo" ng-src = "{{education.logo}}"/>
 						</center>
@@ -116,10 +123,10 @@
 				
 			<div ng-show="showDetails1" class = "AddSchool">	
 			<p> School name </p>
-			<input type = "text" />
+			<input class = "LongInput" type = "text" />
 			
 			<p> Major </p>
-			<input type = "text" />
+			<input type = "text"  class = "LongInput"/>
 
 			<p> Period </p> 
 			<div>
@@ -128,7 +135,7 @@
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
 							value="{{month}}">
-							{{month}}
+							{{month.name}}
 					</option>
 				</select>
 				
@@ -144,7 +151,7 @@
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
 							value="{{month}}">
-							{{month}}
+							{{month.name}}
 					</option>
 				</select>
 				
@@ -175,29 +182,33 @@
 						</option>	
 					</select>
 			</div>
-			</div>
 			
-			<h4><a href="#" ng-click="showDetails1 = ! showDetails1">
-				<span ng-show="!showDetails1"> Edit </span>
-				<span ng-show="showDetails1"> Record </span>
-				</a>
-			</h4>
-		</div>	
+			<div class = "Space1">
+				<input ng-show="flag6"  type = "button" value = "Save" ng-click ="UpdateEducaiton()"/>
+				<input ng-show="!flag6" type = "button" value = "Add" ng-click ="AddEducation()"/>
+			</div>
+			</div>		
+		</div>
+		
+		<button class = "UpdateBar" ng-click="showDetails1 = ! showDetails1">
+			<span ng-show="!showDetails1"> Add Education </span>
+			<span ng-show="showDetails1"> Close </span>
+		</button>
 	</div>
 	
-	<div class = "HeaderSection">
-		<div>
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 			<p class = "Header"> Experience </p>
 			
 			<div ng-show="showDetails2" class = "AddSchool">
 			<p> Company name </p>
-			<input type = "text" />
+			<input type = "text" class = "LongInput"/>
 			
 			<p> Title </p>
-			<input type = "text" />
+			<input type = "text" class = "LongInput"/>
 			
 			<p> Place </p>
-			<input type = "text" />
+			<input type = "text" class = "LongInput"/>
 			
 			<div>
 			<p> Period </p>
@@ -205,7 +216,7 @@
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="month in aglMonthList"
 						value="{{month}}">
-						{{month}}
+						{{month.name}}
 				</option>
 			</select>
 			
@@ -221,7 +232,7 @@
 				<option ng-selected="{{$index == -1}}"
 						ng-repeat="month in aglMonthList"
 						value="{{month}}">
-						{{month}}
+						{{month.name}}
 				</option>
 			</select>
 			
@@ -238,26 +249,30 @@
 			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
 				
 			</textarea>
-			</div>
-
-			<h4><a href="#" ng-click="showDetails2 = ! showDetails2">
-				<span ng-show="!showDetails2"> Edit </span>
-				<span ng-show="showDetails2"> Record </span>
-				</a>
-			</h4>			
+			
+			<input ng-show="flag5"  type = "button" value = "Save" ng-click ="UpdateExperience()"/>
+			<input ng-show="!flag5" type = "button" value = "Add" ng-click ="AddExperience()"/>
+			</div>		
 		</div>
+		
+		<button class = "UpdateBar" ng-click="showDetails2 = ! showDetails2">
+			<span ng-show="!showDetails2"> Add Experience </span>
+			<span ng-show="showDetails2"> Close </span>
+		</button>
 	</div>
 	
-	<div class = "HeaderSection">
-		<div>
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 			<p class = "Header"> Projects </p>
 			
-			<div>
-				<div ng-repeat="project in aglProjects">
+			<div >
+
+				<div class = "ProjectBox" ng-repeat="project in aglProjects">
 					<div ng-if="$index != 0">
 						<hr/>
 					</div>
-					
+					<img class = "editbtn_v1" src = "images/edit.png" ng-click = "EditProject($index)"/>	
+					<img class = "editbtn_v1" src = "images/close.png" ng-click = "RemoveProject($index)"/>
 					<p class = "ProjectName"> {{project.name}} </p>
 					<p class = "ProjectSub"> By {{project.language}}, {{project.period}} </p>
 
@@ -267,29 +282,29 @@
 				
 			<div ng-show="showDetails3" class = "AddSchool">
 			<p> Project name </p>
-			<input type = "text" />
+			<input type = "text" class = "LongInput" ng-model = "aglProName" ng-readonly = "aglProNameChecked"/>
 			
 			<p> By programming language </p>
-			<select class = "" ng-model="aglStartMonth">
+			<select class = "" ng-model="aglProLang">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="month in aglMonthList"
-							value="{{month}}">
-							{{month}}
+							ng-repeat="lang in aglProgrammingLanguages"
+							value="{{lang}}">
+							{{lang}}
 					</option>
 				</select>
 				
 				
 			<p> Period </p> 
 			<div>
-				<select class = "" ng-model="aglStartMonth">
+				<select class = "" ng-model="aglProStartMonth">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
-							value="{{month}}">
-							{{month}}
+							value="{{month.name}}">
+							{{month.name}}
 					</option>
 				</select>
 				
-				<select class = "" ng-model="aglStartYear">
+				<select class = "" ng-model="aglProStartYear">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="year in aglYearList"
 							value="{{year}}">
@@ -297,15 +312,15 @@
 					</option>
 				</select>
 				 - 
-				<select class = "" ng-model="aglEndMonth">
+				<select class = "" ng-model="aglProEndMonth">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
-							value="{{month}}">
-							{{month}}
+							value="{{month.name}}">
+							{{month.name}}
 					</option>
 				</select>
 				
-				<select class = "" ng-model="aglEndYear">
+				<select class = "" ng-model="aglProEndYear">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="year in aglYearList"
 							value="{{year}}">
@@ -315,21 +330,26 @@
 			</div>
 			
 			<p> Description </p>
-			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
+			<textarea id="area3" class = "TextSummary" ng-model = "aglProSummary">
 				
 			</textarea> 
+			<p class = "Error" >
+				{{aglProjectError}}
+			</p>
+				
+			<input ng-show="flag4"  type = "button" value = "Save" ng-click ="UpdateProject()"/>
+			<input ng-show="!flag4"   type = "button" value = "Add" ng-click ="AddProject()"/>
 			</div>
-			
-			<h4><a href="#" ng-click="showDetails3 = ! showDetails3">
-				<span ng-show="!showDetails3"> Edit </span>
-				<span ng-show="showDetails3"> Record </span>
-				</a>
-			</h4>
 		</div>
+		
+		<button class = "UpdateBar" ng-click="showDetails3 = ! showDetails3">
+			<span ng-show="!showDetails3"> Add project </span>
+			<span ng-show="showDetails3"> Close </span>
+		</button>
 	</div>
 	
-	<div class = "HeaderSection">
-		<div>
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 			<p class = "Header"> Languages </p>
 			
 			<div class = "ParentBox">
@@ -341,7 +361,7 @@
 				</div>
 			</div>
 				
-			<div>
+			<div ng-show = "flag2">
 			<table>
 			<tr>
 				<td>
@@ -384,9 +404,15 @@
 			</div>
 			</div>
 		</div>
+		
+		<button class = "UpdateBar" ng-click="flag2 = ! flag2">
+		<span ng-show="!flag2"> Update </span>
+		<span ng-show="flag2"> Close </span>
+		</button>
 	</div>
 	
-	<div class = "HeaderSection">
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">
 		<div>
 			<p class = "Header"> Skills </p>
 			<input list="testList" type="" ng-model="SelectedDoctor" ng-change="LoadSessionData(SelectedDoctor)" placeholder = "Write your skills..."/>
@@ -401,14 +427,17 @@
 			<div ng-repeat="skill in aglSkills">
 				<span class = "buttonWithX">
 					{{skill}}
-					<span class="close-btn"><a href="#" ng-click = "RemoveSkill($index)">X</a></span>
+
+					<img class = "CloseBtn" src = "images/close.png" ng-click = "RemoveSkill($index)"/>
 				</span>
 			</div>
 		</div>
+		</div>
 	</div>	
 	
-	<div class = "HeaderSection">
-		<div>		
+	<div class = "HeaderSection1">
+		<div class = "HeaderBody">	
+		<div>
 			<p class = "Header"> Interests </p>		
 			<input list="testList1" type="" ng-model="SelectedDoctor1" ng-change="LoadSessionData(SelectedDoctor1)" placeholder = "Write your interests..."/>
 			<datalist id="testList1">
@@ -422,17 +451,13 @@
 			<div ng-repeat="interest in aglInterests">
 				<span class = "buttonWithX">
 					{{interest}}
-					<span class="close-btn"><a href="#" ng-click = "RemoveInterest($index)">X</a></span>
+					
+					<img class = "CloseBtn" src = "images/close.png" ng-click = "RemoveInterest($index)"/>
+					
 				</span>
 			</div>
 		</div>
+		</div>
 	</div>
-	
-	<div>
-		<h4><a href="#" ng-click="showDetails = ! showDetails">Kuro</a></h4>
-         <div class="procedure-details" ng-show="showDetails">
-            <p>Number of patient discharges: Shoro</p>
-         </div>
 	</div>
-
 </body>	

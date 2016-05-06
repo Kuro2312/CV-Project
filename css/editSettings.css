@@ -142,9 +142,9 @@ input[readonly]
 
 .buttonWithX
 { 
-float: left;
+	float: left;
 	font-size: 15px;
-	padding: 10px; 
+	padding: 8px; 
 	border: 2px solid #c2c2c2; 
 	background-color: #E8E8E8; 
 	margin: 5px; 
@@ -164,18 +164,22 @@ float: left;
 	width : 50%;
 }
 
-.HeaderSection
+.HeaderSection1
 {
 	background-color: White;
-	width : 70%;
+	width : 100%;
 	font-size : 15px;
 	box-shadow: 2px 2px 5px black;
 	margin-top : 15px;
 	margin-bottom : 15px;
+	padding-top : 10px;
+}
+
+.HeaderBody
+{
 	padding-left : 30px;
 	padding-right : 30px;
-	padding-top : 10px;
-	padding-bottom : 10px;
+	padding-bottom : 30px;
 }
 
 .Header {
@@ -198,7 +202,7 @@ float: left;
 {
 	width : 100%;
 	height : 10em;
-
+	resize : none;
 }
 
 .comboBoxDate
@@ -219,6 +223,8 @@ float: left;
 {
 	background-color : #e6eeff;
 	padding : 10px;
+	margin-top : 30px;
+
 }
 
 .LangTable
@@ -238,10 +244,23 @@ float: left;
 	position : relative;
 }
 
+.ProjectBox
+{
+	position : relative;
+}
+
 .editbtn
 {
 	width : 10%;
 	height : 10%;
+	float : right;
+	margin-left : 10px;
+}
+
+.editbtn_v1
+{
+	width : 20px;
+	height : 20px;
 	float : right;
 	margin-left : 10px;
 }
@@ -261,3 +280,34 @@ float: left;
 	color : red;
 }
 
+.CloseBtn
+{
+	margin-left : 10px;
+	width : 18px;
+	height : 18px;
+	vertical-align:middle;
+}
+
+.UpdateBar
+{
+	width : 100%;
+	background-color : #ebebe0;
+	border :0;
+	font-size : 15px;
+	min-height : 30px;
+}
+ 
+.UpdateBar:hover{
+	background-color : #f5f5f0;
+	color : #8080ff;
+}
+
+.Space1
+{
+	margin-top : 10px;
+}
+
+.LongInput
+{
+	min-width : 50%;
+}
