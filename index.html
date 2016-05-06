@@ -59,7 +59,7 @@
 			<div class = "Summary" ng-if="header == 'Summary'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<p class = "summaryContent"> {{aglSummary}} </p>
 				
@@ -68,7 +68,7 @@
 			<div ng-if="header == 'Education'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<div class = "Education" ng-repeat="education in aglEducation">
 					<p class = "University"> {{education.university}}</p>
@@ -86,7 +86,7 @@
 			<div class = "Experience" ng-if="header == 'Experience'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				
 				<div class = "Education" ng-repeat="exp in aglExperience">
@@ -103,7 +103,7 @@
 			<div  ng-if="header == 'Skills'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<div class = "ParentBox">
 					<div class = "SkillBox" ng-repeat="skill in aglSkills">
@@ -115,7 +115,7 @@
 			<div ng-if="header == 'Languages'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<div class = "ParentBox">
 					<div class = "LanguagesBox" ng-repeat="language in aglLanguages">
@@ -128,7 +128,7 @@
 			<div class = "Projects" ng-if="header == 'Projects'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<div>
 					<div ng-repeat="project in aglProjects">
@@ -147,7 +147,7 @@
 			<div ng-if="header == 'Interests'">
 				<p class = "Header">
 					{{header}}
-					<a href = "" class = "Edit"> [Edit] </a>
+
 				</p>
 				<div class = "ParentBox">
 					<div class = "SkillBox" ng-repeat="interest in aglInterests">
@@ -158,6 +158,13 @@
 		</div>
 	</div>
 	
+	<div>
+		<center>
+			<a href = "editInfo.html">	
+				Edit Profile
+			</a>
+		</center>
+	</div>
 
 
 </body>

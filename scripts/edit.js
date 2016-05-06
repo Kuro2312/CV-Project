@@ -109,6 +109,8 @@ app.controller('myCtrl', function($scope, $http) {
         var reader = new FileReader();
         reader.onload = $scope.imageIsLoaded;
         reader.readAsDataURL(element.files[0]);
+		
+		$scope.SaveData();
     }
 
     $scope.imageIsLoaded = function(e){
@@ -119,6 +121,8 @@ app.controller('myCtrl', function($scope, $http) {
 	
 	$scope.RemoveSkill = function(index){
 		$scope.aglSkills.splice(index, 1); 
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddSkill = function(){
@@ -131,10 +135,14 @@ app.controller('myCtrl', function($scope, $http) {
 				return;
 			
 		$scope.aglSkills.push($scope.SelectedDoctor);
+		
+		$scope.SaveData();
 	}
 	
 	$scope.RemoveInterest = function(index){
 		$scope.aglInterests.splice(index, 1); 
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddInterest = function(){
@@ -148,6 +156,8 @@ app.controller('myCtrl', function($scope, $http) {
 				return;
 		
 		$scope.aglInterests.push($scope.SelectedDoctor1);
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddLanguage = function()
@@ -168,6 +178,8 @@ app.controller('myCtrl', function($scope, $http) {
 
 		$scope.aglLanguages.push({name : $scope.aglLanguage, summary : $scope.aglLevel});
 		$scope.aglDuplicatedLangError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.RemoveLanguage = function(index){
@@ -175,6 +187,8 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.SelectedLangIndex = -1;
 		$scope.flag1 = ! $scope.flag1;
 		$scope.aglIsUpdating = false;
+		
+		$scope.SaveData();
 	}
 	
 	$scope.EditLanguage = function(index){
@@ -195,6 +209,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.aglIsUpdating = false;
 		$scope.flag1 = ! $scope.flag1;
+		
+		$scope.SaveData();
 	}
 	
 	$scope.RemoveProject = function(index){
@@ -204,6 +220,8 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglProNameChecked = false;
 		$scope.ResetProjectData();
 		$scope.aglProjectError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.EditProject = function(index){
@@ -247,6 +265,8 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglProNameChecked = false;
 		$scope.ResetProjectData();
 		$scope.aglProjectError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddProject = function(){
@@ -270,6 +290,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetProjectData();
 		$scope.aglProjectError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.ResetProjectData = function()
@@ -349,6 +371,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetEducationData();
 		$scope.aglEducationError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.EditEducation = function(index){
@@ -400,6 +424,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetEducationData();
 		$scope.aglEducationError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddEducation = function(){
@@ -425,6 +451,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetEducationData();
 		$scope.aglEducationError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.CheckEduData = function()
@@ -504,6 +532,8 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglExpNameChecked = false;
 		$scope.ResetExperienceData();
 		$scope.aglExperienceError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.EditExperience  = function(index){
@@ -547,6 +577,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetExperienceData();
 		$scope.aglExperienceError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.AddExperience = function(){
@@ -570,6 +602,8 @@ app.controller('myCtrl', function($scope, $http) {
 		
 		$scope.ResetExperienceData();
 		$scope.aglExperienceError = "";
+		
+		$scope.SaveData();
 	}
 	
 	$scope.CheckExpData = function()
@@ -624,4 +658,39 @@ app.controller('myCtrl', function($scope, $http) {
 		}
 	}
 	
+	
+	$scope.SaveData = function(){
+		
+		var userData = {
+			FullName : $scope.aglFullName,
+			Job : $scope.aglJob,
+			Phone : $scope.aglPhone,
+			Email : $scope.aglEmail,
+			AddressNation : $scope.aglAddressNation,
+			AddressState : $scope.aglAddressState,
+			Nationality : $scope.aglNationality,
+			ProfileImage : $scope.aglProfile,
+			Headers : $scope.aglHeaders,			
+			Summary : $scope.aglSummary,
+			Education : $scope.aglEducation,
+			Skills : $scope.aglSkills,
+			Experience : $scope.aglExperience,			
+			Interests : $scope.aglInterests,
+			Languages : $scope.aglLanguages,
+			Projects : $scope.aglProjects
+		};
+		
+		var res = $http({
+			  method  : "POST",
+			  url     : "data/data.json",
+			  data : userData
+         });
+		
+		res.success(function(data, status, headers, config) {
+			alert( "Successful");
+		});
+		res.error(function(data, status, headers, config) {
+			alert( "Failure");
+		});
+	}
 });

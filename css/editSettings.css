@@ -5,6 +5,9 @@ body {
 .Profile
 {
 	background-color: White;
+	width : 80%;
+	margin-left : auto;
+	margin-right : auto;
 }
 
 .Edit {
@@ -90,7 +93,7 @@ body {
 
 .EditZone input
 {
-	background-color: white;
+	background-color: #F0F0F0;
 	margin:5px;
 	float : left;
 	border-width:0px;
@@ -110,7 +113,7 @@ body {
 
 input[readonly]
 {
-    background-color:#F0F0F0;
+    background-color:white;
 }
 
 .EditZone .HiddenCheckbox
