@@ -14,7 +14,7 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglAddressState = response.data.AddressState;
 		$scope.aglNationality = response.data.Nationality;
 		$scope.aglMoreDetailAboutAddress = response.data.MoreDetailAboutAddress;
-		$scope.aglProfile = "images/profile1.png";
+
 		$scope.aglProfile = response.data.ProfileImage;
 		
 		$scope.aglHeaders = response.data.Headers;
@@ -205,8 +205,7 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.EditProject = function(index){
-		//$scope.aglLanguage = $scope.aglLanguages[index].name;
-		//$scope.aglLevel = $scope.aglLanguages[index].summary;
+		
 		$scope.aglProNameChecked = true;
 		$scope.showDetails3 = true;
 		$scope.flag4 = true;
@@ -226,20 +225,6 @@ app.controller('myCtrl', function($scope, $http) {
 		$scope.aglProEndYear = eTime[1];
 	}
 	
-	$scope.RemoveEducation = function(index){
-		$scope.aglEducation.splice(index, 1); 
-		$scope.SelectedEduIndex = -1;
-		$scope.flag6 = ! $scope.flag6;
-	}
-	
-	$scope.EditEducation = function(index){
-		//$scope.aglLanguage = $scope.aglLanguages[index].name;
-		//$scope.aglLevel = $scope.aglLanguages[index].summary;
-		$scope.showDetails1 = !$scope.showDetails1;
-		$scope.flag6 = true;
-		$scope.SelectedEduIndex = index;	
-	}
-	
 	$scope.RemoveExperience = function(index){
 		$scope.aglExperience .splice(index, 1); 
 		$scope.SelectedExpIndex = -1;
@@ -257,7 +242,6 @@ app.controller('myCtrl', function($scope, $http) {
 	
 	$scope.UpdateProject = function(){
 		
-		$scope.SelectedProIndex
 		$scope.CheckProjectData();
 		if ($scope.aglProjectError != "")
 			return;
@@ -356,5 +340,160 @@ app.controller('myCtrl', function($scope, $http) {
 			$scope.aglProjectError = "Error: Empty Decription!";
 			return;
 		}
+	}
+	
+	$scope.ResetEducationData = function()
+	{
+		$scope.aglSchoolName = null;
+		$scope.aglMajor = null;
+		$scope.aglEduStartMonth = null;
+		$scope.aglEduStartYear = null;
+		$scope.aglEduEndMonth = null;
+		$scope.aglEduEndYear = null;
+		$scope.aglSelectedEduCountry = null;
+		$scope.aglSelectedEduState = null;
+	}
+	
+	$scope.RemoveEducation = function(index){
+		$scope.aglEducation.splice(index, 1); 
+		$scope.SelectedEduIndex = -1;
+		$scope.flag6 = ! $scope.flag6;	
+		$scope.aglEduNameChecked = false;
+		
+		$scope.ResetEducationData();
+		$scope.aglEducationError = "";
+	}
+	
+	$scope.EditEducation = function(index){
+		
+		$scope.aglEduNameChecked = true;
+		$scope.showDetails1 = true;
+		$scope.flag6 = true;
+		$scope.SelectedEduIndex = index;	
+		
+		$scope.aglSchoolName = $scope.aglEducation[index].university;
+		$scope.aglMajor = $scope.aglEducation[index].major;
+		$scope.aglEduLogo = $scope.aglEducation[index].logo;
+		
+		var time = $scope.aglEducation[index].period.split(" - ");
+		var sTime = time[0].split(" ");
+		var eTime = time[1].split(" ");
+		
+		$scope.aglEduStartMonth = sTime[0];
+		$scope.aglEduEndMonth = eTime[0];
+		$scope.aglEduStartYear = sTime[1];
+		$scope.aglEduEndYear = eTime[1];
+		
+		var address = $scope.aglEducation[index].address.split(", ");
+		$scope.aglSelectedEduCountry = address[1];
+		
+		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedEduCountry );
+		$scope.aglSelectedEduStates = $scope.aglStates[ind].split("|");
+		$scope.aglSelectedEduState = address[0];	
+	}
+	
+	$scope.UpdateEducation = function(){
+		
+		$scope.CheckEduData();
+		if ($scope.aglEducationError != "")
+			return;
+
+		var per = $scope.aglEduStartMonth + " " + $scope.aglEduStartYear + " - ";
+		per = per + $scope.aglEduEndMonth + " " + $scope.aglEduEndYear;
+		
+		var ind = $scope.SelectedEduIndex;
+		
+		$scope.aglEducation[ind].major = $scope.aglMajor;
+		$scope.aglEducation[ind].period = per;
+		$scope.aglEducation[ind].logo = $scope.aglEduLogo;
+		$scope.aglEducation[ind].address = $scope.aglSelectedEduState + ", " + $scope.aglSelectedEduCountry;
+		
+		$scope.flag6 = ! $scope.flag6;
+		$scope.aglEduNameChecked = false;
+		
+		$scope.ResetEducationData();
+		$scope.aglEducationError = "";
+	}
+	
+	$scope.AddEducation = function(){
+		
+		$scope.CheckEduData();
+		if ($scope.aglEducationError != "")
+			return;
+		
+
+		var per = $scope.aglEduStartMonth + " " + $scope.aglEduStartYear + " - ";
+		per = per + $scope.aglEduEndMonth + " " + $scope.aglEduEndYear;
+
+		var newEdu = 
+		{
+			university : $scope.aglSchoolName,
+			major : $scope.aglMajor,
+			period : per,
+			address : $scope.aglSelectedEduState + ", " + $scope.aglSelectedEduCountry,
+			logo : ""
+		}
+		
+		$scope.aglEducation.push (newEdu);
+		
+		$scope.ResetEducationData();
+		$scope.aglEducationError = "";
+	}
+	
+	$scope.CheckEduData = function()
+	{
+		$scope.aglEducationError = "";
+		if ($scope.aglSchoolName == null)
+		{
+			$scope.aglEducationError = "Error: Empty Name!";
+			return;
+		}
+
+		if ($scope.aglMajor == null)
+		{
+			$scope.aglEducationError = "Error: Empty Major!";
+			return;
+		}	
+		
+		if ($scope.aglEduStartYear == null || $scope.aglEduStartMonth == null || $scope.aglEduEndYear == null || $scope.aglEduEndMonth == null)
+		{
+			$scope.aglEducationError = "Error: Invalid Period!";
+			return;
+		}
+
+		if ($scope.aglEduStartYear > $scope.aglEduEndYear)
+		{
+			$scope.aglEducationError = "Error: Invalid Period!";
+			return;
+		}	
+		
+		var n = $scope.aglMonthList.length;
+		var ind1 = -1;
+		var ind2 = -1;
+		
+		for (var i = 0; i < n; i++)
+		{
+			if ($scope.aglEduStartMonth == $scope.aglMonthList[i].name)
+				ind1 = i;
+			if ($scope.aglEduEndMonth == $scope.aglMonthList[i].name)
+				ind2 = i;
+		}
+		
+		if ($scope.aglEduStartYear == $scope.aglEduEndYear && ind1 > ind2)
+		{
+			$scope.aglEducationError = "Error: Invalid Period!";
+			return;
+		}
+				
+		if ($scope.aglSelectedEduCountry == null || $scope.aglSelectedEduState == null)
+		{
+			$scope.aglEducationError = "Error: Empty Address!";
+			return;
+		}
+	}
+	
+	$scope.UpdateState1 = function() {
+		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedEduCountry );
+		$scope.aglSelectedEduStates = $scope.aglStates[ind].split("|");
 	}
 });

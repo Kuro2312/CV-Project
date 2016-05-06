@@ -123,23 +123,23 @@
 				
 			<div ng-show="showDetails1" class = "AddSchool">	
 			<p> School name </p>
-			<input class = "LongInput" type = "text" />
+			<input class = "LongInput" type = "text" ng-model = "aglSchoolName" ng-readonly = "aglEduNameChecked" />
 			
 			<p> Major </p>
-			<input type = "text"  class = "LongInput"/>
+			<input type = "text"  class = "LongInput" ng-model = "aglMajor"/>
 
 			<p> Period </p> 
 			<div>
 				<div> </div>
-				<select class = "" ng-model="aglStartMonth">
+				<select class = "" ng-model="aglEduStartMonth">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
-							value="{{month}}">
+							value="{{month.name}}">
 							{{month.name}}
 					</option>
 				</select>
 				
-				<select class = "" ng-model="aglStartYear">
+				<select class = "" ng-model="aglEduStartYear">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="year in aglYearList"
 							value="{{year}}">
@@ -147,15 +147,15 @@
 					</option>
 				</select>
 				 - 
-				<select class = "" ng-model="aglEndMonth">
+				<select class = "" ng-model="aglEduEndMonth">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="month in aglMonthList"
-							value="{{month}}">
+							value="{{month.name}}">
 							{{month.name}}
 					</option>
 				</select>
 				
-				<select class = "" ng-model="aglEndYear">
+				<select class = "" ng-model="aglEduEndYear">
 					<option ng-selected="{{$index == -1}}"
 							ng-repeat="year in aglYearList"
 							value="{{year}}">
@@ -166,25 +166,29 @@
 			
 			<p> Place </p>
 			<div class = "">
-					<select class = "" id="Country" name ="Country" ng-model = "aglSelectedCountry" ng-change="UpdateState()">
-						<option ng-selected="{{country == aglAddressNation}}"
+					<select class = "" id="Country" name ="Country" ng-model = "aglSelectedEduCountry" ng-change="UpdateState1()">
+						<option ng-selected="{{$index == -1}}"
 								ng-repeat="country in aglCountries"
 								value="{{country}}">
 								{{country}}
 						</option>					
 					</select>
 					
-					<select class = "" name ="State" id ="State" ng-model = "aglAddressState">
-						<option ng-selected="{{state == aglAddressState}}"
-								ng-repeat="state in aglSelectedStates"
+					<select class = "" name ="State" id ="State" ng-model = "aglSelectedEduState">
+						<option ng-selected="{{state == aglSelectedEduState}}"
+								ng-repeat="state in aglSelectedEduStates"
 								value="{{state}}">
 								{{state}}
 						</option>	
 					</select>
 			</div>
 			
+			<p class = "Error" >
+				{{aglEducationError}}
+			</p>
+			
 			<div class = "Space1">
-				<input ng-show="flag6"  type = "button" value = "Save" ng-click ="UpdateEducaiton()"/>
+				<input ng-show="flag6"  type = "button" value = "Save" ng-click ="UpdateEducation()"/>
 				<input ng-show="!flag6" type = "button" value = "Add" ng-click ="AddEducation()"/>
 			</div>
 			</div>		
@@ -249,6 +253,10 @@
 			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
 				
 			</textarea>
+			
+			<p class = "Error" >
+				{{aglExperienceError}}
+			</p>
 			
 			<input ng-show="flag5"  type = "button" value = "Save" ng-click ="UpdateExperience()"/>
 			<input ng-show="!flag5" type = "button" value = "Add" ng-click ="AddExperience()"/>
