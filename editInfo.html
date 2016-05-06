@@ -4,6 +4,7 @@
 	<title>1312094 - Nguyễn Minh Dũng</title>
 	<meta charset='utf-8'/>
 	<link rel="stylesheet" type="text/css" href="css/editSettings.css">
+	<link rel="stylesheet" type="text/css" href="css/settings.css">
 	<script type="text/javascript" src="scripts/angular.js"></script>		
 	<script type="text/javascript" src="scripts/nicEdit.js"></script>
 	<script type="text/javascript" src="scripts/edit.js"></script>
@@ -83,9 +84,17 @@
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Summary </p>
-			<div class = "Summary">
+			<p ng-show="!showDetails"> {{aglSummary}} </p>
+			
+			<div class = "Summary" ng-show="showDetails">
 				<textarea id="area1" class = "TextSummary" ng-model = "aglSummary"></textarea> 
 			</div>
+			
+			<h4><a href="#" ng-click="showDetails = ! showDetails">
+				<span ng-show="!showDetails"> Edit </span>
+				<span ng-show="showDetails"> Record </span>
+				</a>
+			</h4>
 		</div>
 	</div>
 	
@@ -93,6 +102,19 @@
 		<div>
 			<p class = "Header"> Education </p>
 			
+			<div class = "Education" ng-repeat="education in aglEducation">
+					<p class = "University"> {{education.university}}</p>
+					<p class = "UAddress"> {{education.address}}</p>
+					<p class = "Major"> {{education.major}}</p>
+					<p class = "Period"> {{education.period}}</p>
+					<span class = "UniversityLogo">
+						<center>
+							<image class = "Logo" ng-src = "{{education.logo}}"/>
+						</center>
+					</span>
+			</div>
+				
+			<div ng-show="showDetails1" class = "AddSchool">	
 			<p> School name </p>
 			<input type = "text" />
 			
@@ -153,6 +175,13 @@
 						</option>	
 					</select>
 			</div>
+			</div>
+			
+			<h4><a href="#" ng-click="showDetails1 = ! showDetails1">
+				<span ng-show="!showDetails1"> Edit </span>
+				<span ng-show="showDetails1"> Record </span>
+				</a>
+			</h4>
 		</div>	
 	</div>
 	
@@ -160,6 +189,7 @@
 		<div>
 			<p class = "Header"> Experience </p>
 			
+			<div ng-show="showDetails2" class = "AddSchool">
 			<p> Company name </p>
 			<input type = "text" />
 			
@@ -207,7 +237,14 @@
 			<p> Description </p>
 			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
 				
-			</textarea> 
+			</textarea>
+			</div>
+
+			<h4><a href="#" ng-click="showDetails2 = ! showDetails2">
+				<span ng-show="!showDetails2"> Edit </span>
+				<span ng-show="showDetails2"> Record </span>
+				</a>
+			</h4>			
 		</div>
 	</div>
 	
@@ -215,6 +252,20 @@
 		<div>
 			<p class = "Header"> Projects </p>
 			
+			<div>
+				<div ng-repeat="project in aglProjects">
+					<div ng-if="$index != 0">
+						<hr/>
+					</div>
+					
+					<p class = "ProjectName"> {{project.name}} </p>
+					<p class = "ProjectSub"> By {{project.language}}, {{project.period}} </p>
+
+					<p class = "ProjectSummary"> {{project.summary}} </p>
+				</div>
+			</div>
+				
+			<div ng-show="showDetails3" class = "AddSchool">
 			<p> Project name </p>
 			<input type = "text" />
 			
@@ -267,31 +318,71 @@
 			<textarea id="area3" class = "TextSummary" ng-model = "aglDescibeExperience">
 				
 			</textarea> 
+			</div>
+			
+			<h4><a href="#" ng-click="showDetails3 = ! showDetails3">
+				<span ng-show="!showDetails3"> Edit </span>
+				<span ng-show="showDetails3"> Record </span>
+				</a>
+			</h4>
 		</div>
 	</div>
 	
 	<div class = "HeaderSection">
 		<div>
 			<p class = "Header"> Languages </p>
-			<select class = "comboBoxAddress" name ="Lang" id ="Lang" ng-model="aglLanguage">
-				<option ng-selected="{{$index == 0}}"
-						ng-repeat="lang in aglLanguageList"
-						value="{{lang.code}}">
-						{{lang.language}}
-				</option>
-			</select>
-						
-			<div>
-				<textarea id="area2" class = "TextSummary" ng-model = "aglDescibe" placeholder="Describe yourlanguage here...">
+			
+			<div class = "ParentBox">
+				<div class = "LanguagesBox_v1" ng-repeat="language in aglLanguages">	
+					<img class = "editbtn" src = "images/edit.png" ng-click = "EditLanguage($index)"/>	
+					<img class = "editbtn" src = "images/close.png" ng-click = "RemoveLanguage($index)"/>					
+					<span class = "LanguageName"> {{language.name}} </span>
+					<p class = "LanguageLV"> {{language.summary}} </p>
+				</div>
+			</div>
 				
-				</textarea> 
-			</div>
+			<div>
+			<table>
+			<tr>
+				<td>
+					Language:   
+				</td>
+				<td>				
+					<select class = "LangTable" name ="Lang" id ="Lang" ng-model="aglLanguage" ng-disabled="aglIsUpdating">
+						<option ng-selected="{{$index == -1}}"
+								ng-repeat="lang in aglLanguageList"
+								value="{{lang.language}}">
+								{{lang.language}}
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Level:   
+				</td>
+				<td>				 
+					<select class = "LangTable" name ="LV" id ="LV" ng-model="aglLevel">
+						<option ng-selected="{{$index == -1}}"
+								ng-repeat="lv in aglLevelList"
+								value="{{lv}}">
+								{{lv}}
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class = "Error" colspan = "2">
+					{{aglDuplicatedLangError}}
+				</td>
+			</tr>
+			</table>	
 			
 			<div>
-				<input type = "button" value = "Add" ng-click ="AddLanguage()"/>
+				<input ng-show = "!flag1" type = "button" value = "Add" ng-click ="AddLanguage()"/>
+				<input ng-show = "flag1" type = "button" value = "Record" ng-click ="UpdateLanguage()"/>
 			</div>
-			
-
+			</div>
 		</div>
 	</div>
 	
@@ -335,6 +426,13 @@
 				</span>
 			</div>
 		</div>
+	</div>
+	
+	<div>
+		<h4><a href="#" ng-click="showDetails = ! showDetails">Kuro</a></h4>
+         <div class="procedure-details" ng-show="showDetails">
+            <p>Number of patient discharges: Shoro</p>
+         </div>
 	</div>
 
 </body>	

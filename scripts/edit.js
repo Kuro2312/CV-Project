@@ -70,7 +70,7 @@ app.controller('myCtrl', function($scope, $http) {
 	
 	$scope.aglMonthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octoper", "November", "December"];
 	$scope.aglYearList = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
-	
+	$scope.aglLevelList = ["Native", "Professional", "Fluent", "Communicable", "Quite Good"];
 	$scope.UpdateState = function() {
 		var ind = $scope.aglCountries.indexOf( $scope.aglSelectedCountry );
 		$scope.aglSelectedStates = $scope.aglStates[ind].split("|");
@@ -80,10 +80,10 @@ app.controller('myCtrl', function($scope, $http) {
         console.log(val);
     }
 	
-	bkLib.onDomLoaded(function() { 
+	/*bkLib.onDomLoaded(function() { 
 		//nicEditors.allTextAreas()
 		new nicEditor({fullPanel : true}).panelInstance('area1');	
-	});
+	});*/
 	
 	
     $scope.imageUpload = function(element){
@@ -103,6 +103,14 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.AddSkill = function(){
+		if ($scope.SelectedDoctor == null)
+			return;
+		
+		var n = $scope.aglSkills.length;
+		for (var i = 0; i < n; i++)
+			if ($scope.SelectedDoctor == $scope.aglSkills[i])
+				return;
+			
 		$scope.aglSkills.push($scope.SelectedDoctor);
 	}
 	
@@ -111,6 +119,61 @@ app.controller('myCtrl', function($scope, $http) {
 	}
 	
 	$scope.AddInterest = function(){
+		
+		if ($scope.SelectedDoctor1 == null)
+			return;
+		
+		var n = $scope.aglInterests.length;
+		for (var i = 0; i < n; i++)
+			if ($scope.SelectedDoctor1 == $scope.aglInterests[i])
+				return;
+		
 		$scope.aglInterests.push($scope.SelectedDoctor1);
+	}
+	
+	$scope.AddLanguage = function()
+	{
+		var n = $scope.aglLanguages.length;
+		for (var i = 0; i < n; i++)
+			if ($scope.aglLanguage == $scope.aglLanguages[i].name)
+			{
+				$scope.aglDuplicatedLangError = "Error: Existed Language";
+				return ;
+			}
+			
+		if (!($scope.aglLanguage != null && $scope.aglLevel != null))
+		{
+			$scope.aglDuplicatedLangError = "Error: Empty Data! Please check again!";
+			return;
+		}
+
+		$scope.aglLanguages.push({name : $scope.aglLanguage, summary : $scope.aglLevel});
+		$scope.aglDuplicatedLangError = "";
+	}
+	
+	$scope.RemoveLanguage = function(index){
+		$scope.aglLanguages.splice(index, 1); 
+		$scope.SelectedLangIndex = -1;
+		$scope.flag1 = ! $scope.flag1;
+		$scope.aglIsUpdating = false;
+	}
+	
+	$scope.EditLanguage = function(index){
+		$scope.aglLanguage = $scope.aglLanguages[index].name;
+		$scope.aglLevel = $scope.aglLanguages[index].summary;
+		$scope.flag1 = ! $scope.flag1;
+		$scope.SelectedLangIndex = index;
+		$scope.aglIsUpdating = true;
+	}
+	
+	$scope.UpdateLanguage = function(){
+	
+		$scope.aglLanguages[$scope.SelectedLangIndex ].summary = $scope.aglLevel;
+		
+		$scope.aglLanguage = "";
+		$scope.aglLevel = "";
+		
+		$scope.aglIsUpdating = false;
+		$scope.flag1 = ! $scope.flag1;
 	}
 });

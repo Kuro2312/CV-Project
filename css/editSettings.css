@@ -197,9 +197,8 @@ float: left;
 .TextSummary
 {
 	width : 100%;
-	margin-right : 10px;
 	height : 10em;
-	resize :none;
+
 }
 
 .comboBoxDate
@@ -214,5 +213,51 @@ float: left;
 	margin-bottom : 10px;
 	float : left;
 	width : 30%;
+}
+
+.AddSchool
+{
+	background-color : #e6eeff;
+	padding : 10px;
+}
+
+.LangTable
+{
+	width : 30%;
+	
+}
+
+.LanguagesBox_v1
+{
+	width: 28%;
+	float : left;
+	border-radius : 10px;
+	background-color : #e6eeff;
+	margin : 5px;
+	padding : 15px;
+	position : relative;
+}
+
+.editbtn
+{
+	width : 10%;
+	height : 10%;
+	float : right;
+	margin-left : 10px;
+}
+
+.LanguageLV
+{
+	font-size : 15px;
+	color : gray;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	padding-top : 0px;
+	padding-bottom : 0px;
+}
+
+.Error
+{
+	color : red;
 }
 
