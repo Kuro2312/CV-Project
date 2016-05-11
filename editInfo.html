@@ -8,6 +8,8 @@
 	<script type="text/javascript" src="scripts/angular.js"></script>		
 	<script type="text/javascript" src="scripts/nicEdit.js"></script>
 	<script type="text/javascript" src="scripts/edit.js"></script>
+	<script type="text/javascript" src="scripts/firebase.js"></script>
+    <script type="text/javascript" src="scripts/angularfire.min.js"></script>
 </head>
 <body ng-controller="myCtrl">
 	<div class = "Profile">  
@@ -15,7 +17,7 @@
 			<th>
 				<div class="Image-upload">
 					<label class = "As" for="file-input">
-						<img ng-src="{{aglProfile}}"/>
+						<img ng-src="{{aglUser.ProfileImage}}"/>
 					</label>
 
 					<input id="file-input" type="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)"/>
@@ -26,41 +28,43 @@
 			
 			<th>
 				<div class = "EditZone">
-					<input class = "BigSizeText" type="text" ng-model="aglFullName" ng-readonly="!checked">
+					<input class = "BigSizeText" type="text" ng-model="aglUser.FullName" ng-readonly="!checked">
 					<label for="checkbox-input0">
-						<img src = "images/edit.png"/>
+						<img src = "images/edit.png" ng-click = "SaveData()"/>
 					</label>
 					<input class = "HiddenCheckbox"  id = "checkbox-input0" type="checkbox" ng-model="checked">
 				</div>
 
 				
 				<div class = "EditZone">
-					<input class = "SmallSizeText" type="text" ng-model="aglJob" ng-readonly="!checked1">
+					<input class = "SmallSizeText" type="text" ng-model="aglUser.Job" ng-readonly="!checked1">
 					<label for="checkbox-input1">
-						<img src = "images/edit.png"/>
+						<img src = "images/edit.png" ng-click = "SaveData()"/>
 					</label>
 					<input class = "HiddenCheckbox"  id = "checkbox-input1" type="checkbox" ng-model="checked1">
 				</div>			
 				
 				<div class = "EditZone">
-					<input class = "SmallSizeText" type="text" ng-model="aglEmail" ng-readonly="!checked3">
+					<input class = "SmallSizeText" type="text" ng-model="aglUser.Email" ng-readonly="!checked3">
 					<label for="checkbox-input3">
-						<img src = "images/edit.png"/>
+						<img src = "images/edit.png" ng-click = "SaveData()"/>
 					</label>
 					<input class = "HiddenCheckbox"  id = "checkbox-input3" type="checkbox" ng-model="checked3">
 				</div>
 
 				<div class = "Space">
-					<select class = "comboBoxAddress" id="Country" name ="Country" ng-model = "aglSelectedCountry" ng-change="UpdateState()">
-						<option ng-selected="{{country == aglAddressNation}}"
-								ng-repeat="country in aglCountries"
+					<span ng-show="!showDetails0" > {{aglUser.AddressState + ',' + aglUser.AddressNation}}</span>
+					
+					<select ng-show="showDetails0" class = "comboBoxAddress" id="Country" name ="Country" ng-model = "aglSelectedCountry" ng-change="UpdateState()">
+						<option ng-selected="{{country == aglUser.AddressNation}}"
+								ng-repeat="country in aglWorldData.Countries"
 								value="{{country}}">
 								{{country}}
 						</option>					
 					</select>
 					
-					<select class = "comboBoxAddress" name ="State" id ="State" ng-model = "aglAddressState">
-						<option ng-selected="{{state == aglAddressState}}"
+					<select ng-show="showDetails0" class = "comboBoxAddress" name ="State" id ="State" ng-model = "aglUser.AddressState">
+						<option ng-selected="{{state == aglUser.AddressState}}"
 								ng-repeat="state in aglSelectedStates"
 								value="{{state}}">
 								{{state}}
@@ -68,10 +72,11 @@
 					</select>
 				</div>
 				
-				<div>
-					<select class = "comboBoxAddress" name ="Nationality" id ="Nationality" ng-model="aglNationality">
-						<option ng-selected="{{nationality == aglNationality}}"
-								ng-repeat="nationality in aglNationalities"
+				<div class = "Space">
+					<span ng-show="!showDetails0" > {{aglUser.Nationality}}</span>
+					<select ng-show="showDetails0" class = "comboBoxAddress" name ="Nationality" id ="Nationality" ng-model="aglUser.Nationality">
+						<option ng-selected="{{nationality == aglUser.Nationality}}"
+								ng-repeat="nationality in aglWorldData.Nationalities"
 								value="{{nationality}}">
 								{{nationality}}
 						</option>
@@ -85,10 +90,10 @@
 	<div class = "HeaderSection1">
 		<div class = "HeaderBody">
 			<p class = "Header"> Summary </p>
-			<p ng-show="!showDetails"> {{aglSummary}} </p>
+			<p ng-show="!showDetails"> {{aglUser.Summary}} </p>
 			
 			<div class = "Summary" ng-show="showDetails">
-				<textarea id="area1" class = "TextSummary" ng-model = "aglSummary"></textarea> 
+				<textarea id="area1" class = "TextSummary" ng-model = "aglUser.Summary"></textarea> 
 			</div>
 			
 			
@@ -104,7 +109,7 @@
 		<div class = "HeaderBody">
 			<p class = "Header"> Education </p>
 			
-			<div class = "Education" ng-repeat="education in aglEducation">
+			<div class = "Education" ng-repeat="education in aglUser.Education">
 					<div ng-if="$index != 0">
 						<hr/>
 					</div>
@@ -133,7 +138,7 @@
 				<div> </div>
 				<select class = "" ng-model="aglEduStartMonth">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="month in aglMonthList"
+							ng-repeat="month in aglPublicData.MonthList"
 							value="{{month.name}}">
 							{{month.name}}
 					</option>
@@ -141,7 +146,7 @@
 				
 				<select class = "" ng-model="aglEduStartYear">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="year in aglYearList"
+							ng-repeat="year in aglPublicData.YearList"
 							value="{{year}}">
 							{{year}}
 					</option>
@@ -149,7 +154,7 @@
 				 - 
 				<select class = "" ng-model="aglEduEndMonth">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="month in aglMonthList"
+							ng-repeat="month in aglPublicData.MonthList"
 							value="{{month.name}}">
 							{{month.name}}
 					</option>
@@ -157,7 +162,7 @@
 				
 				<select class = "" ng-model="aglEduEndYear">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="year in aglYearList"
+							ng-repeat="year in aglPublicData.YearList"
 							value="{{year}}">
 							{{year}}
 					</option>
@@ -168,7 +173,7 @@
 			<div class = "">
 					<select class = "" id="Country" name ="Country" ng-model = "aglSelectedEduCountry" ng-change="UpdateState1()">
 						<option ng-selected="{{$index == -1}}"
-								ng-repeat="country in aglCountries"
+								ng-repeat="country in aglWorldData.Countries"
 								value="{{country}}">
 								{{country}}
 						</option>					
@@ -204,7 +209,7 @@
 		<div class = "HeaderBody">
 			<p class = "Header"> Experience </p>
 			
-			<div class = "Education" ng-repeat="exp in aglExperience">
+			<div class = "Education" ng-repeat="exp in aglUser.Experience">
 					<div ng-if="$index != 0">
 						<hr/>
 					</div>
@@ -228,7 +233,7 @@
 			<p> Period </p>
 			<select class = "" ng-model="aglExpStartMonth">
 				<option ng-selected="{{$index == -1}}"
-						ng-repeat="month in aglMonthList"
+						ng-repeat="month in aglPublicData.MonthList"
 						value="{{month.name}}">
 						{{month.name}}
 				</option>
@@ -236,7 +241,7 @@
 			
 			<select class = "" ng-model="aglExpStartYear">
 				<option ng-selected="{{$index == -1}}"
-						ng-repeat="year in aglYearList"
+						ng-repeat="year in aglPublicData.YearList"
 						value="{{year}}">
 						{{year}}
 				</option>
@@ -244,7 +249,7 @@
 			 - 
 			<select class = "" ng-model="aglExpEndMonth">
 				<option ng-selected="{{$index == -1}}"
-						ng-repeat="month in aglMonthList"
+						ng-repeat="month in aglPublicData.MonthList"
 						value="{{month.name}}">
 						{{month.name}}
 				</option>
@@ -252,7 +257,7 @@
 			
 			<select class = "" ng-model="aglExpEndYear">
 				<option ng-selected="{{$index == -1}}"
-						ng-repeat="year in aglYearList"
+						ng-repeat="year in aglPublicData.YearList"
 						value="{{year}}">
 						{{year}}
 				</option>
@@ -285,7 +290,7 @@
 			
 			<div >
 
-				<div class = "ProjectBox" ng-repeat="project in aglProjects">
+				<div class = "ProjectBox" ng-repeat="project in aglUser.Projects">
 					<div ng-if="$index != 0">
 						<hr/>
 					</div>
@@ -305,7 +310,7 @@
 			<p> By programming language </p>
 			<select class = "" ng-model="aglProLang">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="lang in aglProgrammingLanguages"
+							ng-repeat="lang in aglPublicData.ProgrammingLanguages"
 							value="{{lang}}">
 							{{lang}}
 					</option>
@@ -316,7 +321,7 @@
 			<div>
 				<select class = "" ng-model="aglProStartMonth">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="month in aglMonthList"
+							ng-repeat="month in aglPublicData.MonthList"
 							value="{{month.name}}">
 							{{month.name}}
 					</option>
@@ -324,7 +329,7 @@
 				
 				<select class = "" ng-model="aglProStartYear">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="year in aglYearList"
+							ng-repeat="year in aglPublicData.YearList"
 							value="{{year}}">
 							{{year}}
 					</option>
@@ -332,7 +337,7 @@
 				 - 
 				<select class = "" ng-model="aglProEndMonth">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="month in aglMonthList"
+							ng-repeat="month in aglPublicData.MonthList"
 							value="{{month.name}}">
 							{{month.name}}
 					</option>
@@ -340,7 +345,7 @@
 				
 				<select class = "" ng-model="aglProEndYear">
 					<option ng-selected="{{$index == -1}}"
-							ng-repeat="year in aglYearList"
+							ng-repeat="year in aglPublicData.YearList"
 							value="{{year}}">
 							{{year}}
 					</option>
@@ -371,7 +376,7 @@
 			<p class = "Header"> Languages </p>
 			
 			<div class = "ParentBox">
-				<div class = "LanguagesBox_v1" ng-repeat="language in aglLanguages">	
+				<div class = "LanguagesBox_v1" ng-repeat="language in aglUser.Languages">	
 					<img class = "editbtn" src = "images/edit.png" ng-click = "EditLanguage($index)"/>	
 					<img class = "editbtn" src = "images/close.png" ng-click = "RemoveLanguage($index)"/>					
 					<span class = "LanguageName"> {{language.name}} </span>
@@ -388,7 +393,7 @@
 				<td>				
 					<select class = "LangTable" name ="Lang" id ="Lang" ng-model="aglLanguage" ng-disabled="aglIsUpdating">
 						<option ng-selected="{{$index == -1}}"
-								ng-repeat="lang in aglLanguageList"
+								ng-repeat="lang in aglLanguageData"
 								value="{{lang.language}}">
 								{{lang.language}}
 						</option>
@@ -402,7 +407,7 @@
 				<td>				 
 					<select class = "LangTable" name ="LV" id ="LV" ng-model="aglLevel">
 						<option ng-selected="{{$index == -1}}"
-								ng-repeat="lv in aglLevelList"
+								ng-repeat="lv in aglPublicData.LevelList"
 								value="{{lv}}">
 								{{lv}}
 						</option>
@@ -435,14 +440,14 @@
 			<p class = "Header"> Skills </p>
 			<input list="testList" type="" ng-model="SelectedDoctor" ng-change="LoadSessionData(SelectedDoctor)" placeholder = "Write your skills..."/>
 			<datalist id="testList">
-				<option ng-repeat="skill in aglSkillCatalog" value="{{skill}}">
+				<option ng-repeat="skill in aglPublicData.SkillCatalog" value="{{skill}}">
 			</datalist>
 			
 			<input type = "button" value = "Add" ng-click ="AddSkill()"/>
 		</div>
 		
 		<div class = "ArrayDecription">
-			<div ng-repeat="skill in aglSkills">
+			<div ng-repeat="skill in aglUser.Skills">
 				<span class = "buttonWithX">
 					{{skill}}
 
@@ -459,14 +464,14 @@
 			<p class = "Header"> Interests </p>		
 			<input list="testList1" type="" ng-model="SelectedDoctor1" ng-change="LoadSessionData(SelectedDoctor1)" placeholder = "Write your interests..."/>
 			<datalist id="testList1">
-				<option ng-repeat="interest in aglInterestCatalog" value="{{interest}}">
+				<option ng-repeat="interest in aglPublicData.InterestCatalog" value="{{interest}}">
 			</datalist>
 			
 			<input type = "button" value = "Add" ng-click ="AddInterest()"/>
 		</div>
 		
 		<div class = "ArrayDecription">
-			<div ng-repeat="interest in aglInterests">
+			<div ng-repeat="interest in aglUser.Interests">
 				<span class = "buttonWithX">
 					{{interest}}
 					

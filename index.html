@@ -5,7 +5,8 @@
 	<meta charset='utf-8'/>
 	<link rel="stylesheet" type="text/css" href="css/settings.css">
 	<script type="text/javascript" src="scripts/angular.js"></script>
-			
+	<script type="text/javascript" src="scripts/firebase.js"></script>
+    <script type="text/javascript" src="scripts/angularfire.min.js"></script>
 	<script type="text/javascript" src="scripts/main1.js"></script>
 </head>
 <body ng-controller="myCtrl">
@@ -14,39 +15,39 @@
 			<table>
 				<tr>
 					<td rowspan = "6">
-						<image ng-src = "{{aglProfileImage}}" />
+						<image ng-src = "{{aglUser.ProfileImage}}" />
 					</td>
 					<td>
 						<span class = "FullName">
-							{{aglFullName}}
+							{{aglUser.FullName}}
 						</span>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span class = "Jobs">
-							{{aglJob}}
+							{{aglUser.Job}}
 						</span>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span class = "Address">
-							{{aglAddressState}}, {{aglAddressNation}}
+							{{aglUser.AddressState}}, {{aglUser.AddressNation}}
 						</span>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span class = "Email">
-							{{aglEmail}}
+							{{aglUser.Email}}
 						</span>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span class = "Email">
-							{{aglNation}}
+							{{aglUser.Nation}}
 						</span>
 					</td>
 				</tr>
@@ -55,13 +56,12 @@
 	</div>
 	
 	<div class = "BodySection">
-		<div class = "HeaderSection" ng-repeat="header in aglHeaders">
+		<div class = "HeaderSection" ng-repeat="header in aglUser.Headers">
 			<div class = "Summary" ng-if="header == 'Summary'">
 				<p class = "Header">
 					{{header}}
-
 				</p>
-				<p class = "summaryContent"> {{aglSummary}} </p>
+				<p class = "summaryContent"> {{aglUser.Summary}} </p>
 				
 			</div>
 			
@@ -70,7 +70,7 @@
 					{{header}}
 
 				</p>
-				<div class = "Education" ng-repeat="education in aglEducation">
+				<div class = "Education" ng-repeat="education in aglUser.Education">
 					<p class = "University"> {{education.university}}</p>
 					<p class = "UAddress"> {{education.address}}</p>
 					<p class = "Major"> {{education.major}}</p>
@@ -89,7 +89,7 @@
 
 				</p>
 				
-				<div class = "Education" ng-repeat="exp in aglExperience">
+				<div class = "Education" ng-repeat="exp in aglUser.Experience">
 					<div ng-if="$index != 0">
 						<hr/>
 					</div>
@@ -106,7 +106,7 @@
 
 				</p>
 				<div class = "ParentBox">
-					<div class = "SkillBox" ng-repeat="skill in aglSkills">
+					<div class = "SkillBox" ng-repeat="skill in aglUser.Skills">
 						<input class = "SkillButton" type="button" value="{{skill}}"/>
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 
 				</p>
 				<div class = "ParentBox">
-					<div class = "LanguagesBox" ng-repeat="language in aglLanguages">
+					<div class = "LanguagesBox" ng-repeat="language in aglUser.Languages">
 						<p class = "LanguageName"> {{language.name}} </p>
 						<p class = "LanguageSummary"> {{language.summary}} </p>
 					</div>
@@ -131,7 +131,7 @@
 
 				</p>
 				<div>
-					<div ng-repeat="project in aglProjects">
+					<div ng-repeat="project in aglUser.Projects">
 						<div ng-if="$index != 0">
 							<hr/>
 						</div>
@@ -150,7 +150,7 @@
 
 				</p>
 				<div class = "ParentBox">
-					<div class = "SkillBox" ng-repeat="interest in aglInterests">
+					<div class = "SkillBox" ng-repeat="interest in aglUser.Interests">
 						<input class = "SkillButton" type="button" value="{{interest}}"/>
 					</div>
 				</div>

@@ -1,55 +1,15 @@
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http) {
-  $http({
-    method : "GET",
-    url : "data/data.json"
-  }).then(function mySucces(response) {
-		$scope.aglFullName = response.data.FullName;
+var app = angular.module("myApp", ["firebase"]);
 
-		$scope.aglJob = response.data.Job;
-		$scope.aglPhone = response.data.Phone;
-		$scope.aglEmail = response.data.Email;
-		$scope.aglAddressNation = response.data.AddressNation;
-		$scope.aglAddressState = response.data.AddressState;
-		$scope.aglNationality = response.data.Nationality;
-		$scope.aglMoreDetailAboutAddress = response.data.MoreDetailAboutAddress;
-		$scope.aglProfileImage = response.data.ProfileImage;
-		
-		$scope.aglHeaders = response.data.Headers;
-		
-		$scope.aglSummary = response.data.Summary;
-
-		$scope.aglExperience = response.data.Experience;
-		
-		$scope.aglEducation = response.data.Education;
-
-		$scope.aglSkills = response.data.Skills;
-
-		$scope.aglInterests = response.data.Interests;
-
-		$scope.aglLanguages = response.data.Languages;
-
-		$scope.aglProjects = response.data.Projects;
-		
-    }, function myError(response) {
-      $scope.aglFullName = response.statusText;
-  });
-  
-  $scope.myFunc = function () 
-  {
-
-		// Writing it to the server
-		//		
-		var dataObj = {
-
-				FullName : $scope.newSkill
-		};	
-		var res = $http.post('data/data.json', dataObj);
-		res.success(function(data, status, headers, config) {
-			alert( "failure message: " + JSON.stringify({data: data}));
-		});
-		res.error(function(data, status, headers, config) {
-			alert( "failure message: " + JSON.stringify({data: data}));
-		});		
+app.controller("myCtrl", ["$scope", "$firebaseObject",
+  function($scope, $firebaseObject) {
+    var ref = new Firebase("https://cv-1312094.firebaseio.com/web/saving-data/fireblog/users");
+	
+	$scope.aglUser = $firebaseObject(ref);
   }
-});
+  
+ 
+]
+
+
+);
+
