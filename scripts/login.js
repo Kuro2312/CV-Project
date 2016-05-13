@@ -67,7 +67,11 @@ app.controller("myCtrl", ["$scope", "Auth", "$location",
 				$scope.aglUserName = null;
 				$scope.aglPass = null;
 				$scope.aglFlag = true;
+				
+				alert("Log in successfully");
 				window.location.href = "index.html";
+				
+				
 			}).catch(function(error) {
 				$scope.GetError(error);
 			});
