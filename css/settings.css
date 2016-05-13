@@ -235,3 +235,11 @@ body {
 	padding-bottom : 5px;
 	font-weight : bold;
 }
+
+.Logout {
+	color : CornFlowerBlue;
+	font-size : 20px;
+	position : absolute;
+	top : 5px;
+	right : 10px;
+}

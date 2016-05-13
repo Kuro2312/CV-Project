@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>1312094 - Nguyễn Minh Dũng</title>
+	<meta charset='utf-8'/>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script type="text/javascript" src="scripts/angular.js"></script>
+	<script type="text/javascript" src="scripts/firebase.js"></script>
+    <script type="text/javascript" src="scripts/angularfire.min.js"></script>
+	<script type="text/javascript" src="scripts/login.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<div class = "BodySection">
+	<center>
+	<table>
+		<tr>
+			<td colspan = "2">
+				<center>
+				<p class = "Title"> Truy cập trang web </p>
+				</center>
+			</td>
+		</tr>
+		<tr class = "Space">
+			<td>
+				<span> Username </span>
+			</td>
+			<td>
+				<input type="text" ng-model = "aglUserName" value = ""/>
+			</td>
+		</tr>
+		<tr class = "Space">
+			<td>
+				<span> Password </span>
+			</td >
+			<td>
+				<input type="text" ng-model = "aglPass" value = ""/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan = "2">
+				<p class = "Error">
+					{{aglError}}
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan = "2">
+			<center class = "Space">
+				<button ng-click = "SignIn()"> Sign In </button>
+
+				<button ng-click = "SignUp()"> Sign Up </button>
+				</center>
+			</td>
+		</tr>
+	</table>
+	</center>
+	
+	
+	</div>
+</body>
+	

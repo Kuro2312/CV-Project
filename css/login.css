@@ -1,0 +1,32 @@
+body {
+	background-color: #EEEEEE;
+}
+
+.BodySection {
+	width : 30%;
+	height : 40%;
+	margin-left : auto;
+	margin-right : auto;
+	margin-top : auto;
+	margin-bottom : auto;
+	background-color : white;
+	position:absolute;  
+	left:35%; 
+	top:35%;
+	vertical-align: middle;
+	padding-top :20px;
+}
+
+.Title {
+	font-size : 20px;
+	font-weight : bold;
+}
+
+.Space {
+	margin-top : 5px;
+	margin-bottom : 15px;
+}
+
+.Error {
+	color : red;
+}
